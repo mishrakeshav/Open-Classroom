@@ -1,0 +1,75 @@
+### user 
+ - first_name 
+ - last_name 
+ - email 
+ - password 
+ - date_joined 
+
+### classroom 
+ - name 
+
+### classroom_member
+ - classroom_id 
+ - user_id 
+ - is_teacher 
+
+### topics
+ -classroom_id 
+ - name   
+
+### posts
+ - user_id
+ - classroom_id 
+ - topic_id 
+ - attachment_id 
+
+### comments 
+ - post_id 
+ - user_id 
+ - comment 
+
+### attachments
+ - file 
+
+### assignments 
+ - name 
+ - type 
+ - id (mcq,questions,file_upload)
+ - user
+
+### mcq
+ - assignment_id 
+ - question
+ - option_1
+ - option_2
+ - option_3
+ - option_4
+ - answer 
+
+### mcq_ans 
+ - mcq_id 
+ - user_id 
+ - answer (1,2,3,4)
+
+### questions
+ - assignment_id
+ - number_of_questions
+ - question_mapping_id  
+
+### questions_mapping 
+ - questions_id
+ - question
+ - answer
+
+### file_upload 
+ - assignment_id  
+
+### file_upload_students 
+ - file_upload_id  
+ - file 
+ - user_id
+ - turned_in  
+ 
+ 
+
+ 
