@@ -1,0 +1,24 @@
+# Requirements 
+
+Teachers:
+1. create different classrooms 
+2. can join classroom
+3. can send code using which students can join 
+4. can add/remove new teachers/give privileges
+5. Can post files and posts in the classroom
+6. Can create/update/delete an assignment 
+7. Can see who submitted the assignments and can give mks 
+8. Can view list of all students along with their mks in all the assignments 
+9. Can ask questions/mcq/polls 
+10. Can create different topics(9,8,7,6,5)
+
+
+Students : 
+1. Can join/leave classrooms
+2. Can post files and posts in the classroom
+3. Submit assignments 
+4. View all the posts  
+5. View all the teachers and students 
+6. Private posts
+7. List of assignments 
+

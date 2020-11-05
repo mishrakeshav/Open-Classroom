@@ -1,0 +1,147 @@
+
+Table users {
+  id int [pk, increment]
+  first_name varchar
+  last_name varchar
+  created_at datetime
+  email varchar
+  password varchar
+}
+
+Table classrooms {
+  id int [pk, increment]
+  name varchar
+  description varchar
+  created_at datetime
+  created_by int
+}
+
+
+Table classroom_members{
+  id int [pk, increment]
+  user_id int
+  classroom_id int
+  is_teacher boolean
+}
+
+Table topics{
+  id int [pk, increment]
+  topic_name varchar
+  classroom_id int
+}
+
+Table posts{
+  id int [pk, increment]
+  topic_id int
+  type varchar
+  title varchar
+  created_by int
+  created_at datetime
+}
+
+Table assignments{
+  id int [pk, increment]
+  type varchar
+  post_id int
+  due_date datetime
+  grade int
+}
+
+Table mcq{
+  id int [pk, increment]
+  assignment_id int
+  question varchar
+  option_1 varchar
+  option_2 varchar
+  option_3 varchar
+  option_4 varchar
+  answer int
+}
+
+Table mcq_answers{
+  id int [pk, increment]
+  mcq_id int
+  user_id int
+  answer int
+}
+
+
+Table questions{
+  id int [pk, increment]
+  assignment_id int
+  question varchar
+}
+
+Table question_answers{
+  id int [pk, increment]
+  question_id int
+  user_id int
+  answer text
+}
+
+Table attachments{
+  id int [pk, increment]
+  post_id int
+}
+
+Table files_uploaded{
+  id int [pk, increment]
+  file_path varchar
+  files_uploaded_student_id int
+}
+
+Table resources{
+  id int [pk, increment]
+  attachment_id int
+  file_path varchar
+}
+
+Table file_uploaded_students{
+  id int [pk, increment]
+  post_id int
+  user_id int
+}
+
+
+
+
+
+
+
+
+
+Ref: "classrooms"."created_by" < "users"."id"
+
+Ref: "classroom_members"."user_id" < "users"."id"
+
+Ref: "classroom_members"."classroom_id" < "classrooms"."id"
+
+Ref: "mcq_answers"."mcq_id" < "mcq"."id"
+
+Ref: "mcq_answers"."user_id" - "users"."id"
+
+
+
+Ref: "assignments"."post_id" - "posts"."id"
+
+Ref: "posts"."created_by" < "users"."id"
+
+Ref: "questions"."assignment_id" < "question_answers"."question_id"
+
+Ref: "question_answers"."user_id" < "users"."id"
+
+
+
+Ref: "classrooms"."id" < "topics"."classroom_id"
+
+Ref: "topics"."id" < "posts"."topic_id"
+
+Ref: "posts"."id" < "attachments"."id"
+
+Ref: "attachments"."id" < "resources"."attachment_id"
+
+Ref: "posts"."id" < "file_uploaded_students"."id"
+
+Ref: "files_uploaded"."files_uploaded_student_id" < "file_uploaded_students"."id"
+
+Ref: "file_uploaded_students"."user_id" < "users"."id"
