@@ -329,13 +329,24 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container">
-          <div class="row">
+        <div class="container-fluid mt-5">
+          <div class="row m-2">
             
           <div class="col-lg-8">
             <div class="row">
               <h3 class="text-primary">Assignment No. 5: Module3 Interpersonal Skills</h3>
-              <button class="btn btn-secondary ml-auto">opt</button>
+              <div class="dropdown no-arrow ml-auto">
+                <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
             </div>
             <p class="text-muted">VRUSHALI DEOLE Nov 5</p>
             <div class="row">
@@ -354,22 +365,20 @@
                 <h4 class="text-primary">Your Work</h4>
                 <p class="ml-auto text-success">Assigned</p>
               </div>
-              <button class="btn btn-primary btn-block">Add or create</button>
+              <button class="btn btn-outline-dark btn-block">
+                <i class="fa fa-plus" aria-hidden="true"></i> Add or create
+              </button>
               <button class="btn btn-primary btn-block">Mark as done</button>
             </div>
 
-            <div class="card p-4 m-3 shadow">
-              <p class="text-dark font-weight-bold">Private Comments</p>
-              <div class="row">
-                <img class="rounded-circle" src="" alt="">
-                <div class="input-group mb-3">
-                  <input type="rounded-pill text" class="form-control">
-                  <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button" id="button-addon2">Send</button>
-                  </div>
+            <div class="card p-1 m-3 shadow">
+              <div class="input-group mb-3 mt-3">
+                <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
                 </div>
               </div>
-            </div>
 
           </div>
           </div>
