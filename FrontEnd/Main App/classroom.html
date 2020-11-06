@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Classroom | BCE</title>
+  <title>SB Admin 2 - Blank</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,9 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <script src="js/script.js" defer></script>
 
+   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body id="page-top">
@@ -330,47 +332,119 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <!-- ROW -->
-          <div class="row">
-            <div class="col-12 ">
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-12 ">
                 <div class="card bg-dark shadow p-3 mb-3 bg-white rounded">
-                    <img src="img/undraw_posting_photo.svg" height = "200" class="card-img" alt="...">
-                    <div class="card-img-overlay">
-                      <h1 class="card-title"><b>Card title</b></h1>
-                      <h3>TE IT BCE</h3>
-                      <p class="card-text">Created by Keshav Mishra</p>
-                    </div>
+                  <img src="img/undraw_posting_photo.svg" height="175" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h1 class="card-title"><b>Card title</b></h1>
+                    <h3>TE IT BCE</h3>
+                    <p class="card-text">Buisness Communication & Ethics</p>
+                  </div>
                 </div>
-            </div>
-            <div class="col-12">
+              </div>
+              <div class="col-12">
                 <div class="row">
-                    <div class="col-lg-3 d-none d-lg-block">
-                        <div class="card border">
-                            <div class="card-body">
-                              <h5>Upcoming</h5>
-                              <p class="card-text">Woohoo, no work due soon!.</p>
-                              <a class = "float-right" href="!#" >View all</a>
-                            </div>
-                        </div>
+                  <div class="col-lg-3 d-none d-lg-block">
+                    <div class="card border">
+                      <div class="card-body">
+                        <h5>Upcoming</h5>
+                        <p class="card-text">Woohoo, no work due soon!</p>
+                        <a class="float-right" href="!#">View all</a>
+                      </div>
                     </div>
+                  </div>
                     <div class="col-lg-9">
+                        <!-- ROW -->
                         <div class="row">
                             <div class="col-12 mb-2">
-                                <div class="card shadow-sm">
+                                <div id = "clicked-post" class="card shadow-sm">
                                     <div class="card-body">
-                                        <img src="img/image2.jpeg"  width = "30" height="30" alt="..." class="rounded-circle mr-1">
-                                        <a href="#!">Share something with your class</a>
+                                        <img src="img/image1.jpg" width="30" height="30" alt="..." class="rounded-circle mr-2 text-none">
+                                        <a  class = "text-decoration-none" href="#!">Share something with your class</a>
                                     </div>
                                 </div>
+                                <!-- TEXT AREA -->
+                                <div id = "post-textarea" class="card shadow-sm d-none">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <textarea class="form-control bg-gray-200" id="exampleFormControlTextarea1" placeholder = "Share Something" rows="3"></textarea>
+                                        </div>
+                                        <div class="float-left">
+                                            <a class="nav-link dropdown-toggle " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-paperclip" aria-hidden="true"></i>
+                                            </a>
+                                            <div class="dropdown-list dropdown-menu shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    <div class="font-weight-bold">
+                                                        <div class="text-truncate">File.</div>
+                                                    </div>
+                                                    </a>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-sm btn-primary m-1 pl-3 pr-3 float-right">
+                                            Post
+                                        </button>
+                                        <button id = "cancel-post" class="btn btn-sm btn-outline-dark m-1 float-right">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- END TEXT AREA -->
+                                </div>
+                                <!-- END COL -->
+                                <!-- COL -->
+                                <div class="col-12">
+                                    <!-- CARD -->
+                                    <div class="card shadow-sm mt-3">
+                                        <div class="card-body">
+                                            <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle mr-2 mb-2 float-left">
+                                            <button class="btn btn-circle float-right"><i class="fas fa-ellipsis-v"></i></button>
+                                            <!-- Container -->
+                                            <div class="container">
+                                              <h4 class="text-primary">Keshav Mishra</h4>
+                                              <h6>Nov 6</h6>
+                                            </div>
+                                            <!-- End Container -->
+                                            <!-- CARD -->
+                                            <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
+                                              <div class="row no-gutters">
+                                                <div class="col-md-4">
+                                                  <img src="img/undraw_posting_photo.svg" class="card-img img-fluid d-none d-lg-block" alt="...">
+                                                </div>
+                                                <div class="col-md-8">
+                                                  <div class="card-body">
+                                                    <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
+                                                    </h5>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <!-- END CARD -->
+                                        </div>
+                                        <div class="input-group mb-3 mt-3">
+                                          <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                          <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                          <div class="input-group-append">
+                                            <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <!-- END CARD -->
+                                </div>
+                                <!-- END COL -->
                             </div>
                         </div>
+                        <!-- END ROW -->
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+            <!-- ROW END -->
           </div>
-          <!-- ROW END -->
-        </div>
-        <!-- /.container-fluid -->
+          <!-- /.container-fluid -->>
 
       </div>
       <!-- End of Main Content -->
