@@ -372,15 +372,18 @@
                                             <textarea class="form-control bg-gray-200" id="exampleFormControlTextarea1" placeholder = "Share Something" rows="3"></textarea>
                                         </div>
                                         <div class="float-left">
-                                            <a class="nav-link dropdown-toggle " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-paperclip" aria-hidden="true"></i>
-                                            </a>
-                                            <div class="dropdown-list dropdown-menu shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                                    <div class="font-weight-bold">
-                                                        <div class="text-truncate">File.</div>
-                                                    </div>
-                                                    </a>
+                                            
+                                            <div class="dropdown no-arrow ml-auto animated--grow-in">
+                                              <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-paperclip text-primary" aria-hidden="true"></i>
+                                              </a>
+                                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Dropdown Header:</div>
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                              </div>
                                             </div>
                                         </div>
                                         <button class="btn btn-sm btn-primary m-1 pl-3 pr-3 float-right">
@@ -400,7 +403,18 @@
                                     <div class="card shadow-sm mt-3">
                                         <div class="card-body">
                                             <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle mr-2 mb-2 float-left">
-                                            <button class="btn btn-circle float-right"><i class="fas fa-ellipsis-v"></i></button>
+                                            <div class="dropdown no-arrow float-right">
+                                              <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                                              </a>
+                                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Dropdown Header:</div>
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                              </div>
+                                            </div>
                                             <!-- Container -->
                                             <div class="container">
                                               <h4 class="text-primary">Keshav Mishra</h4>
