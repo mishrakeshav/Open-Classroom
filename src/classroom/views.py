@@ -5,4 +5,5 @@ def home(requests):
     context = {
         'title' : 'Classroom',
     }
-    return render( requests,'classroom/index.html', context)
+    return render(requests, 'base.html', context)
+
