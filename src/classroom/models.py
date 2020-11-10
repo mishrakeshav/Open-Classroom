@@ -9,6 +9,12 @@ class Classroom(models.Model):
     description = models.TextField(max_length=300)
     created_by = models.ForeignKey(User, on_delete=models.PROTECT)
     created_at = models.DateTimeField(default=timezone.now)
+    users = models.ManyToManyField(User,related_name='users')
+
+    def __str__(self):
+        return f'{self.name}'
+        
+
 
 
 

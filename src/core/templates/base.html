@@ -11,7 +11,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>OpenClassroom | {{ title }}</title>
+  <title>
+    OpenClassroom | {% block title %}{% endblock %}
+  </title>
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'mainapp/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -38,9 +40,8 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <!-- {% block content %}
-          {% endblock content %} -->
-          <h1>Hello World</h1>
+          {% block content %}
+          {% endblock content %}
         </div>
         <!-- /.container-fluid -->
 
