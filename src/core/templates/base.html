@@ -17,10 +17,13 @@
       
         <!-- Main Content -->
       <div id="content">
+        
         {% include 'partials/_topbar.html' %}
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+        {% include 'partials/_alerts.html' %}
+
           {% block content %}
           {% endblock content %}
         </div>

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'classroom',
     'posts',
     'users',
+    'crispy_forms',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core/static'),
 ]
+
+
+LOGIN_REDIRECT_URL = 'classroom:home'
+LOGOUT_REDIRECT_URL = 'landing-page'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
