@@ -16,7 +16,7 @@ This is an attempt to clone the best features of google classroom and educative.
 
 **1. Clone Repository & Install Packages**
 ```sh
-git clone https://github.com/mishrakeshav/Django-Real-Estate-Website.git
+git clone https://github.com/mishrakeshav/Open-Classroom.git
 pip install -r requirements.txt
 ```
 **2. Setup Environment**
