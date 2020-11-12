@@ -41,6 +41,26 @@
         </div>
       </li>
 
+      {% if request.path == '/classroom/' %}
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="text-dark font-weight-bold">&#43;</span>
+          </a>
+          <!-- Dropdown - User Information -->
+          <!-- Button trigger modal -->
+          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter" href="#">
+              Create Classroom
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#">
+              Join Classroom
+            </a>
+          </div>
+        
+        </li>
+      {% endif %}
+
       <!-- Nav Item - Alerts -->
       <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
