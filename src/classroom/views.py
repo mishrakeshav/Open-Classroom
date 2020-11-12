@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
+
 def home(requests):
     classrooms = requests.user.classroom_set.all()
     classroom_form = ClassroomCreationForm()
@@ -49,11 +50,15 @@ def join_classroom(request):
     return redirect('classroom:home')
 
 
-def open_classroom(requests):
+def open_classroom(requests,pk):
+    classroom = Classroom.objects.get(id = pk)
+
     context = {
         'title' : 'Classroom',
+        'classroom' : classroom,
     }
-    return render(requests, 'base.html', context)
+
+    return render(requests, 'classroom/classroom.html', context)
 
 def delete_classroom(requests):
     context = {
