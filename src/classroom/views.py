@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Classroom
-from .forms import ClassroomCreationForm
+from .forms import ClassroomCreationForm,JoinClassroomForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -8,10 +8,11 @@ from django.contrib import messages
 def home(requests):
     classrooms = requests.user.classroom_set.all()
     classroom_form = ClassroomCreationForm()
-    # print(classrooms)
+    join_classroom_form = JoinClassroomForm()
     context = {
         'classrooms' : classrooms,
         'classroom_form': classroom_form,
+        'join_classroom_form':join_classroom_form
     }
     return render(requests, 'classroom/home.html', context)
 
@@ -31,14 +32,22 @@ def create_classroom(request):
             messages.success(request, f'Classroom {name} created !')
         else:
             messages.danger(request, f'Classroom Could not be created :(')
-
     return redirect('classroom:home')
 
-def join_classroom(requests):
-    context = {
-        'title' : 'Classroom',
-    }
-    return render(requests, 'base.html', context)
+def join_classroom(request):
+    print('IN CREATE_CLASSROOM')
+    if request.method == 'POST':
+        print('fORM vaLID')
+        form = JoinClassroomForm(request.POST)
+        if form.is_valid(): 
+            classroom = Classroom.objects.filter(classroom_code = form.cleaned_data.get('code')).first()
+            # print(classroom.users.create(request.user))
+            request.user.classroom_set.add(classroom)
+            messages.success(request, f'You are added in {classroom.name}')
+        else:
+            messages.danger(request, f'Error adding you to the classroom')
+    return redirect('classroom:home')
+
 
 def open_classroom(requests):
     context = {

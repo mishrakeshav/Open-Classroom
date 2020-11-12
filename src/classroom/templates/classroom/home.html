@@ -76,20 +76,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-          <div class="modal-body">
-                <div class="form-group">
-                  <label for="exampleInput">Class Code</label>
-                  <input type="text" class="form-control" id="exampleInput" placeholder="Enter Class Code">
-                  <small id="Help" class="form-text text-muted">Ask your teacher for the class code, then enter it here.</small>
-                </div>
-              <ul><h5>To sign in with a class code</h5>
-                  <li>Use an authorized account</li>
-                  <li>Use a class code with 5-7 letters or numbers, and no spaces or symbols</li>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Join Classroom</button>
-            </div>
+            <form action="{% url 'classroom:join_classroom' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                        <div class="form-group">
+                        <label for="exampleInput">{{ join_classroom_form.code.label }}</label>
+                        {{ join_classroom_form.code|attr:'class: form-control'|attr:'placeholder:Enter Class Code' }}
+                        <small id="Help" class="form-text text-muted">Ask your teacher for the class code, then enter it here.</small>
+                        </div>
+                    <ul><h5>To sign in with a class code</h5>
+                        <li>Use an authorized account</li>
+                        <li>Use a class code with 5-7 letters or numbers, and no spaces or symbols</li>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Join Classroom</button>
+                    </div>
+            </form>
         </div>
     </div>
 </div>
