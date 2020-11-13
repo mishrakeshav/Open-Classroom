@@ -1,5 +1,6 @@
 {% extends 'user_base.html' %}
 {% load widget_tweaks %}
+{% load crispy_forms_tags %}
 
 {% block title %} Register {% endblock title %}
 
@@ -16,7 +17,7 @@
         </div>
         <form class="user" method='POST'>
             {% csrf_token %}
-            {{ form | cripsy }}
+            {{ form | crispy }}
             </div> 
                 <button class="btn- btn-primary btn-user btn-block">Register</button>
         </form>

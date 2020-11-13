@@ -1,28 +1,37 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 
 
-def register(requests):
-    if requests.method == 'POST':
-        form = UserRegistrationForm(requests.POST)
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(requests, f'Account Created Successfully for {username}')
+            messages.success(request, f'Account Created Successfully for {username}')
             return redirect('users:login')
         else:
-            messages.success(requests, f'Error Setting up the account')
+            messages.success(request, f'Error Setting up the account')
     else:
         form = UserRegistrationForm()
-    return render(requests, 'users/register.html', {'form':form})
+    return render(request, 'users/register.html', {'form':form})
 
-def profile(requests):
-    form = UserRegistrationForm()
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, f"Profile Updated !")
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+    
     context = {
-        'form': form
+        'user_form': user_form,
+        # 'profile_form': profile_form,
     }
-    return render(requests, 'users/profile.html', context)
-
-
+    return render(request, 'users/profile.html', context)
 

@@ -136,7 +136,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core/static'),
 ]
 
-
+LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'classroom:home'
 LOGOUT_REDIRECT_URL = 'landing-page'
 

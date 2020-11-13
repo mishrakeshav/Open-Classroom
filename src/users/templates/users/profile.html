@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 
-{% block title %} Register {% endblock title %}
+{% block title %} Profile {% endblock title %}
 
 {% block content %}
 <div class="card o-hidden border-0 shadow-lg my-5">
@@ -17,7 +17,7 @@
         </div>
         <form class="user" method='POST'>
             {% csrf_token %}
-            {{ form | crispy }}
+            {{ user_form | crispy }}
            
             <button class="btn btn-small btn-primary btn-user btn-block">Update Profile</button>
             
