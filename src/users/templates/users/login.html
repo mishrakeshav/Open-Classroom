@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
 
-{% block title %} Forgot Password {% endblock title %}
+{% block title %} Login {% endblock title %}
 
 {% block content %}
 <!-- Outer Row -->
@@ -23,14 +23,7 @@
             </div>
             <form class="user" method='POST'>
                 {% csrf_token %}
-                    <div class="form-group">
-                        {{ form.username | attr:'class: form-control form-control-user'| attr:'placeholder: Username' }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.password | attr:'class: form-control form-control-user'| attr:'placeholder: Password' }}
-                    </div>
-
+                {{ form | crispy }}
                     <button class="btn btn-primary btn-user btn-block" type='submit'>Login</button>
             </form>
             <hr>
@@ -38,7 +31,7 @@
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
             </div>
             <div class="text-center">
-                <a class="small" href="register.html">Create an Account!</a>
+                <a class="small" href="{% url 'users:register' %}">Create an Account!</a>
             </div>
             </div>
         </div>
