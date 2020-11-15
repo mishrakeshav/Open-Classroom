@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
-from .models import Classroom
-from .forms import ClassroomCreationForm,JoinClassroomForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+from .models import Classroom
+from .forms import ClassroomCreationForm,JoinClassroomForm
 
 
 def home(requests):
@@ -51,7 +51,7 @@ def join_classroom(request):
 
 
 def open_classroom(requests,pk):
-    classroom = Classroom.objects.get(id = pk)
+    classroom = get_object_or_404(Classroom,pk = pk)
 
     context = {
         'title' : 'Classroom',

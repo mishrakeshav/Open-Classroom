@@ -15,7 +15,10 @@ class Classroom(models.Model):
     def __str__(self):
         return f'{self.name}'
         
-
+class Topic(models.Model):
+    name = models.CharField(max_length=200)
+    classroom = models.ForeignKey(Classroom,on_delete = models.CASCADE)
+    
 
 
 
