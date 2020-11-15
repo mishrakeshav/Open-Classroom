@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Classroom
+from . import models
 # Register your models here.
 
-admin.site.register(Classroom)
+admin.site.register(models.Classroom)
+admin.site.register(models.Topic)

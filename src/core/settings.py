@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'classroom',
     'posts',
     'users',
+    'openforms',
     'crispy_forms',
     'widget_tweaks',
 ]
