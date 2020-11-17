@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load crispy_forms_tags %}
 {% block title %} Home {% endblock title %}
 
 {% block content %}
@@ -10,9 +11,8 @@
         <div class="card bg-dark shadow p-3 mb-3 bg-white rounded">
         <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" height="175" class="card-img" alt="...">
         <div class="card-img-overlay">
-            <h1 class="card-title"><b>Card title</b></h1>
-            <h3>TE IT BCE</h3>
-            <p class="card-text">Buisness Communication & Ethics</p>
+            <h1 class="card-title"><b>{{ classroom.name }}</b></h1>
+            <p class="card-text">{{ classroom.description }}</p>
         </div>
         </div>
     </div>
@@ -30,6 +30,7 @@
             <div class="col-lg-9">
                 <!-- ROW -->
                 <div class="row">
+
                     <div class="col-12 mb-2">
                         <div id = "clicked-post" class="card shadow-sm">
                             <div class="card-body">
@@ -40,15 +41,19 @@
                         <!-- TEXT AREA -->
                         <div id = "post-textarea" class="card shadow-sm d-none">
                             <div class="card-body">
+                                {% csrf_token %}
                                 <div class="form-group">
-                                    <textarea class="form-control bg-gray-200" id="exampleFormControlTextarea1" placeholder = "Share Something" rows="3"></textarea>
+                                    {{ post_form.title|attr:"form-control"|attr:"placeholder:Title"}}
+                                </div>
+                                <div class="form-group">
+                                    {{ post_form.description|attr:"form-control"|attr:"placeholder:Description" }}
                                 </div>
                                 <div class="float-left">
-                                    
-                                    <div class="dropdown no-arrow ml-auto animated--grow-in">
-                                    <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <label for="id_file_field" class="btn btn-circle dropdown-toggle">
                                         <i class="fa fa-paperclip text-primary" aria-hidden="true"></i>
-                                    </a>
+                                    </label>
+                                    {{ post_form.file_field }}
+                                    <div class="dropdown no-arrow ml-auto animated--grow-in">
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">Dropdown Header:</div>
                                         <a class="dropdown-item" href="#">Action</a>
@@ -70,6 +75,7 @@
                         </div>
                         <!-- END COL -->
                         <!-- COL -->
+                        {% for content in contents %}
                         <div class="col-12">
                             <!-- CARD -->
                             <div class="card shadow-sm mt-3">
@@ -89,8 +95,8 @@
                                     </div>
                                     <!-- Container -->
                                     <div class="container">
-                                    <h4 class="text-primary">Keshav Mishra</h4>
-                                    <h6>Nov 6</h6>
+                                    <a href="#"><h4 class="text-primary">{{ content.title }}</h4></a>
+                                    <h6>Posted on {{ content.created_at }} By {{ content.created_by.username }}</h6>
                                     </div>
                                     <!-- End Container -->
                                     <!-- CARD -->
@@ -109,16 +115,19 @@
                                     </div>
                                     <!-- END CARD -->
                                 </div>
+                                {% if content.content_type == 'post' %}
                                 <div class="input-group mb-3 mt-3">
-                                <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                                <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <div class="input-group-append">
-                                    <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                    <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                    <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                    </div>
                                 </div>
-                                </div>
+                                {% endif %}
                             </div>
                             <!-- END CARD -->
                         </div>
+                        {% endfor %}
                         <!-- END COL -->
                     </div>
                 </div>

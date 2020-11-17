@@ -11,6 +11,13 @@ class Post(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
+
+    @property
+    def content_type(self):
+        return 'post'
+
 class Assignment(models.Model):
     title = models.CharField(max_length=250)
     description = models.TextField()
@@ -19,9 +26,19 @@ class Assignment(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     turned_in = models.BooleanField(default = False)
 
+    def __str__(self):
+        return self.title
+    
+    @property
+    def content_type(self):
+        return 'assignment'
+
+
+
 class Resources(models.Model):
     files = models.FileField(upload_to='classroom/resources/')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
 
 class Attachments(models.Model):
     files = models.FileField(upload_to='classroom/attachments/')

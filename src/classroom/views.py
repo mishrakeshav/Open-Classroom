@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 from .models import Classroom
-from .forms import ClassroomCreationForm,JoinClassroomForm
+from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm
 
 
+@login_required
 def home(requests):
     classrooms = requests.user.classroom_set.all()
     classroom_form = ClassroomCreationForm()
@@ -17,6 +20,7 @@ def home(requests):
     }
     return render(requests, 'classroom/home.html', context)
 
+@login_required
 def create_classroom(request):
     print('IN CREATE_CLASSROOM')
     if request.method == 'POST':
@@ -35,6 +39,7 @@ def create_classroom(request):
             messages.danger(request, f'Classroom Could not be created :(')
     return redirect('classroom:home')
 
+@login_required
 def join_classroom(request):
     print('IN CREATE_CLASSROOM')
     if request.method == 'POST':
@@ -49,22 +54,32 @@ def join_classroom(request):
             messages.danger(request, f'Error adding you to the classroom')
     return redirect('classroom:home')
 
-
+@login_required
 def open_classroom(requests,pk):
     classroom = get_object_or_404(Classroom,pk = pk)
+    topics = classroom.topic_set.all()
+    contents = []
+    for topic in topics:
+        contents.extend(list(topic.post_set.all()))
+        contents.extend(list(topic.assignment_set.all()))
+    
+    contents.sort(key = lambda x: x.created_at)
+
+    post_form = PostForm()
 
     context = {
         'title' : 'Classroom',
         'classroom' : classroom,
+        'contents': contents,
+        'post_form': post_form
     }
 
     return render(requests, 'classroom/classroom.html', context)
 
+@login_required
 def delete_classroom(requests):
     context = {
         'title' : 'Classroom',
     }
     return render(requests, 'base.html', context)
-
-
 

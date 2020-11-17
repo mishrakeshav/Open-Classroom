@@ -12,9 +12,16 @@ class OpenForm(models.Model):
     deadline = models.DateTimeField()
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
+
 class SubmittedForm(models.Model):
     openform = models.ForeignKey(OpenForm, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username} -> {self.openform.title}"
+
 
 class MultiChoiceQuestion(models.Model):
     question = models.TextField()
@@ -29,6 +36,8 @@ class MultiChoiceQuestion(models.Model):
             MinValueValidator(1)
         ])
     openform = models.ForeignKey(OpenForm, on_delete=models.CASCADE)
+
+
 
 class MultiChoiceAnswer(models.Model):
     question = models.ForeignKey(MultiChoiceQuestion, on_delete=models.CASCADE)
