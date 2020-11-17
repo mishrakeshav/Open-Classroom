@@ -27,5 +27,6 @@ urlpatterns = [
     path('classroom/',include('classroom.urls')),
     path('', views.landing, name='landing-page'),
     path('users/', include('users.urls')),
+    path('posts/', include('posts.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

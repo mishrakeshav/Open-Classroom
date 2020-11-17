@@ -17,6 +17,10 @@ class Post(models.Model):
     @property
     def content_type(self):
         return 'post'
+    
+    @property
+    def resources(self):
+        return self.resource_set.all()
 
 class Assignment(models.Model):
     title = models.CharField(max_length=250)
@@ -32,15 +36,17 @@ class Assignment(models.Model):
     @property
     def content_type(self):
         return 'assignment'
+    
+    
 
 
 
-class Resources(models.Model):
+class Resource(models.Model):
     files = models.FileField(upload_to='classroom/resources/')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 
-class Attachments(models.Model):
+class Attachment(models.Model):
     files = models.FileField(upload_to='classroom/attachments/')
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 

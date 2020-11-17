@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-from .models import Classroom
+from .models import Classroom,Topic
 from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm
 
 
@@ -22,18 +22,18 @@ def home(requests):
 
 @login_required
 def create_classroom(request):
-    print('IN CREATE_CLASSROOM')
     if request.method == 'POST':
         print('fORM vaLID')
         form = ClassroomCreationForm(request.POST)
         if form.is_valid(): 
-            print(form.cleaned_data)
             name = form.cleaned_data.get('name')
             description = form.cleaned_data.get('description')
             classroom = Classroom.objects.create(name=name, description=description, created_by=request.user)
             classroom.save()
             classroom.classroom_code = classroom.name[:4] + str(classroom.id)
             classroom.save()
+            topic = Topic(name = 'General' , classroom = classroom)
+            topic.save()
             messages.success(request, f'Classroom {name} created !')
         else:
             messages.danger(request, f'Classroom Could not be created :(')
