@@ -19,11 +19,11 @@ class Assignment(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     turned_in = models.BooleanField(default = False)
 
-class Resources(models.Model):
+class Resource(models.Model):
     files = models.FileField(upload_to='classroom/resources/')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
-class Attachments(models.Model):
+class Attachment(models.Model):
     files = models.FileField(upload_to='classroom/attachments/')
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 

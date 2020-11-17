@@ -4,6 +4,7 @@ from django.contrib import messages
 
 from .models import Classroom
 from .forms import ClassroomCreationForm,JoinClassroomForm
+from posts.models import Assignment,Post,Resource,Attachment
 
 
 def home(requests):
