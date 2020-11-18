@@ -1,4 +1,4 @@
-{% extends 'user_base.html' %}
+{% extends 'base.html' %}
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 
@@ -18,7 +18,7 @@
         <form class="user" method='POST'>
             {% csrf_token %}
             {{ user_form | crispy }}
-           
+            {{ profile_form | crispy }}
             <button class="btn btn-small btn-primary btn-user btn-block">Update Profile</button>
             
         </form>
