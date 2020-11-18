@@ -18,8 +18,8 @@
         <form class="user" method='POST'>
             {% csrf_token %}
             {{ form | crispy }}
-            </div> 
-                <button class="btn- btn-primary btn-user btn-block">Register</button>
+            <button class="btn btn-primary btn-user btn-block">Register</button>
+            
         </form>
         <hr>
         <div class="text-center">
@@ -28,6 +28,7 @@
         <div class="text-center">
             <a class="small" href="{% url 'users:login' %}">Already have an account? Login!</a>
         </div>
+        </div> 
         </div>
     </div>
     </div>

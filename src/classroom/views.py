@@ -83,3 +83,12 @@ def delete_classroom(requests):
     }
     return render(requests, 'base.html', context)
 
+
+@login_required
+def members(request, pk):
+    classroom = get_object_or_404(Classroom, pk=pk)
+    context = {
+        'teachers': classroom.classroomteachers_set.all(),
+        'students': classroom.users.all(),
+    }
+    return render(request, 'classroom/members.html', context)

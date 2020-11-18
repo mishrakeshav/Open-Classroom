@@ -25,11 +25,18 @@ def register(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = ProfileUpdateForm(request.FILES)
-        if user_form.is_valid():
+        user_form = UserUpdateForm(data=request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(data=request.POST, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
+            profile_form.save(commit=False)
+            profile = request.user.profile
+            if 'image' in request.FILES:
+                profile.image = request.FILES['image']
+            profile.save()
             messages.success(request, f"Profile Updated !")
+            return redirect('users:profile')
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)

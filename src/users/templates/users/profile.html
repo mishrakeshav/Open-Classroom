@@ -15,12 +15,11 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Update Profile!</h1>
         </div>
-        <form class="user" method='POST'>
+        <form class="user" method='POST' enctype='multipart/form-data'>
             {% csrf_token %}
             {{ user_form | crispy }}
             {{ profile_form | crispy }}
-            <button class="btn btn-small btn-primary btn-user btn-block">Update Profile</button>
-            
+            <button type='submit' class="btn btn-small btn-primary btn-user btn-block">Update Profile</button>
         </form>
         <hr>
         <div class="text-center">
