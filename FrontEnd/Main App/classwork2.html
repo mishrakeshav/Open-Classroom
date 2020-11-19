@@ -9,17 +9,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Tables</title>
+  <title>classwork2</title>
 
-  <!-- Custom fonts for this template -->
+  <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <script src="js/script.js" defer></script>
+  <a target="_blank" href="https://icons8.com/icons/set/clipboard">Clipboard icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
-  <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
@@ -98,12 +99,12 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="login.html">Login</a>
@@ -112,7 +113,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item active" href="blank.html">Blank Page</a>
           </div>
         </div>
       </li>
@@ -125,7 +126,7 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
@@ -152,11 +153,9 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <form class="form-inline">
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-              <i class="fa fa-bars"></i>
-            </button>
-          </form>
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -335,80 +334,102 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          <!-- ROW -->
+          <div class="row">
+            <div class="col-12">
+              <div class="container-fluid">
+                <div class="btn-group pl-4 pt-2 ml-4">
+                  <button type="button" class="btn btn-primary btn-lg rounded-pill mb-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-plus mr-2"></i>
+                    Create
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item btn-lg" type="button"><i class="fas fa-clipboard-list pr-2"> Quiz Assignment</i></button>
+                    <button class="dropdown-item btn-lg" type="button"><i class="fas fa-clipboard-list pr-2"> Question</i></button>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <!-- ROW -->
+                  <div class="row flip">
+                    <div class="col-12 mb-2">
+                      <div id="flip" class="card shadow-sm">
+                        <div class="card-body">
+                          <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                          <a class="text-decoration-none" href="#!">subject</a>
+                        </div>
+                      </div>
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+                      <div class="row mt-3">
+                        <div class="col-12 mb-2">
+                          <div id="clicked-post" class="card shadow-sm">
+                            <div class="card-body">
+                              <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                              <a class="text-decoration-none" href="#!">adsa</a>
+                            </div>
+                          </div>
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                  </tbody>
-                </table>
+                      <!-- TEXT AREA -->
+                      <div id="post-textarea" class="card shadow-sm d-none">
+                        <div class="card-body">
+                          <div class="form-group">
+                            <textarea class="form-control bg-gray-200" id="exampleFormControlTextarea1" placeholder="Share Something" rows="3"></textarea>
+                          </div>
+                          <div class="float-left">
+                            <a class="nav-link dropdown-toggle " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fa fa-paperclip" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-list dropdown-menu shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                              <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="font-weight-bold">
+                                  <div class="text-truncate">File.</div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                          <button class="btn btn-sm btn-primary m-1 pl-3 pr-3 float-right">
+                            Post
+                          </button>
+                          <button id="cancel-post" class="btn btn-sm btn-outline-dark m-1 float-right">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                      <!-- END TEXT AREA -->
+                    </div>
+                    <!-- END COL -->
+                    <!-- COL -->
+
+                  </div>
+                  <!-- END CARD -->
+                </div>
+                <!-- END COL -->
               </div>
             </div>
+            <!-- END ROW -->
           </div>
-
         </div>
-        <!-- /.container-fluid -->
-
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
+  </div>
+  <!-- ROW END -->
+  </div>
+  <!-- /.container-fluid -->>
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Your Website 2020</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -447,13 +468,7 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
-
 </body>
 
 </html>
+class="rounded-circle mr-2 text-none
