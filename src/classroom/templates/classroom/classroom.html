@@ -91,22 +91,27 @@
                                     </div>
                                     <!-- End Container -->
                                     <!-- CARD -->
+
                                     {% if content.content_type == 'post' %}
+                                    <div class="row">
                                         {% for resource in content.resources %}
-                                        <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
-                                            <div class="row no-gutters">
-                                                <div class="col-md-4">
-                                                <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" class="card-img img-fluid d-none d-lg-block" alt="...">
-                                                </div>
-                                                <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
-                                                    </h5>
-                                                </div>
+                                        <div class="col-6">
+                                            <div class="card mb-3 ml-2">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                    <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" class="card-img img-fluid d-none d-lg-block" alt="...">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title "><a href="{{ resource.files.url  }}">{{ resource.filename }}...</a>
+                                                        </h5>
+                                                    </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         {% endfor %}
+                                    </div>
                                     {% endif %}
                                     <!-- END CARD -->
                                 </div>

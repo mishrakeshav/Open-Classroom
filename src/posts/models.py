@@ -1,3 +1,5 @@
+import os 
+
 from django.db import models
 from django.contrib.auth.models import User 
 from django.utils import timezone
@@ -44,6 +46,10 @@ class Assignment(models.Model):
 class Resource(models.Model):
     files = models.FileField(upload_to='classroom/resources/')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    @property
+    def filename(self):
+        return self.files.name[20:][:7]
 
 
 class Attachment(models.Model):
