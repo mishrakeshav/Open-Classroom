@@ -70,4 +70,3 @@ class Resource(models.Model):
 class Attachment(models.Model):
     files = models.FileField(upload_to='classroom/attachments/')
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
-

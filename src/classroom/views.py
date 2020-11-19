@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from .models import Classroom,Topic
+from posts.models import Assignment
 from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm
 
 
@@ -92,3 +93,24 @@ def members(request, pk):
         'students': classroom.users.all(),
     }
     return render(request, 'classroom/members.html', context)
+
+def assignment_submit(request, pk):
+    if request.method=='POST':
+        pass
+
+    assignment = get_object_or_404(Assignment, pk=pk)
+    submit_assignment = assignment.submittedassignment_set.filter(user=request.user)
+    if submit_assignment:
+        submit_assignment = submit_assignment.first()
+        assignment_files = submit_assignment.assignmentfile_set.all()
+    else: assignment_files = None
+
+
+    context = {
+        'assignment': assignment,
+        'attachments': assignment.attachment_set.all(),
+        'submitted_assignment': submit_assignment,
+        'assignment_files': assignment_files,
+    }
+
+    return render(request, 'classroom/assignment_submit.html', context)
