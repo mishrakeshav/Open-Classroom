@@ -30,7 +30,7 @@ class Assignment(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    turned_in = models.BooleanField(default = False)
+    
 
     def __str__(self):
         return self.title
@@ -38,9 +38,24 @@ class Assignment(models.Model):
     @property
     def content_type(self):
         return 'assignment'
-    
-    
 
+class SubmittedAssignment(models.Model):
+    assignment = models.ForeignKey(Assignment, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    turned_in = models.BooleanField(default = False)
+    
+    def __str__(self):
+        return f"{self.user.username} --> {self.assignment.title}"
+
+
+class AssignmentFile(models.Model):
+    files = models.FileField(upload_to='classroom/assignments/')
+    submitted_assignment  =  models.ForeignKey(SubmittedAssignment, on_delete=models.CASCADE)
+
+    @property
+    def filename(self):
+        return self.files.name[20:][:7]
+    
 
 
 class Resource(models.Model):

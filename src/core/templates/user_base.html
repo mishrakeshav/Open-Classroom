@@ -3,7 +3,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include 'partials/_head.html' %}
+<head>
+    {% include 'partials/_head.html' %}
+    <title>
+    OpenClassroom | {% block title %}{% endblock title %}
+    </title>
+</head>
 
 <body class="bg-gradient-primary">
 
