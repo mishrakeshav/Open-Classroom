@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% load crispy_forms_tags %}
 {% block title %} Home {% endblock title %}
 
 {% block content %}
@@ -60,22 +61,35 @@
                     <p>{{ file.files.name }}</p>
                 {% endfor %}
             {% endif %}
-
             {% if not submitted_assignment.turned_in %}
-                <button class="btn btn-outline-dark btn-block">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Add or create
-                </button>
-                <button class="btn btn-primary btn-block">Mark as done</button>
+                <form action="{% url 'classroom:assignment_submit' assignment.pk %}" method="post" enctype='multipart/form-data'>
+                  {% csrf_token %}
+                  {{ form | crispy }}
+                  <button type="submit" class="btn btn-outline-dark btn-block">
+                      <i class="fa fa-plus" aria-hidden="true"></i> Add or create
+                  </button>
+                </form>
+                <form action="{% url 'classroom:turnin' assignment.pk %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary btn-block">Mark as done</button>
+                </form>
             {% else %}
                 <button class="btn btn-outline-dark btn-block">
                     Unsubmit
                 </button>
             {% endif %}
         {% else %}
-            <button class="btn btn-outline-dark btn-block">
-                <i class="fa fa-plus" aria-hidden="true"></i> Add or create
-            </button>
-            <button class="btn btn-primary btn-block">Mark as done</button>
+            <form action="{% url 'classroom:assignment_submit' assignment.pk %}" method="post"  enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type="submit" class="btn btn-outline-dark btn-block">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add or create
+                </button>
+            </form>
+            <form action="{% url 'classroom:turnin' assignment.pk %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary btn-block">Mark as done</button>
+            </form>
         {% endif %}
 
       </div>

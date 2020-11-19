@@ -26,11 +26,3 @@ def create_post(request, pk):
             messages.danger(request, f'Cannot create post')
     
     return redirect('classroom:open_classroom', pk)
-            
-
-
-
-
-            
-        
-    return redirect('classroom:open_classroom')

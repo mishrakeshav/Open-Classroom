@@ -14,4 +14,7 @@ class PostForm(forms.Form):
     title = forms.CharField()
     description = forms.CharField(widget=forms.Textarea)
     file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
+class AssignmentFileForm(forms.Form):
+    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
     

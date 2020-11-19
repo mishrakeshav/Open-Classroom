@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 
 from .models import Classroom,Topic
-from posts.models import Assignment
-from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm
+from posts.models import Assignment,SubmittedAssignment,AssignmentFile
+from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm
 
 
 @login_required
@@ -96,8 +96,17 @@ def members(request, pk):
 
 def assignment_submit(request, pk):
     if request.method=='POST':
-        pass
-
+        print('here 1')
+        assignment = get_object_or_404(Assignment,pk=pk)
+        submitted_assignment = assignment.submittedassignment_set.filter(user = request.user).first()
+        if not submitted_assignment:
+            submitted_assignment = SubmittedAssignment.objects.create(assignment = assignment, user = request.user)
+        files = request.FILES.getlist('file_field')
+        print(files)
+        for f in files:
+            AssignmentFile.objects.create(submitted_assignment = submitted_assignment,files=f)
+    
+    form = AssignmentFileForm()
     assignment = get_object_or_404(Assignment, pk=pk)
     submit_assignment = assignment.submittedassignment_set.filter(user=request.user)
     if submit_assignment:
@@ -111,6 +120,17 @@ def assignment_submit(request, pk):
         'attachments': assignment.attachment_set.all(),
         'submitted_assignment': submit_assignment,
         'assignment_files': assignment_files,
+        'form':form
     }
-
     return render(request, 'classroom/assignment_submit.html', context)
+
+def turnin(request,pk):
+    if request.method == 'POST':
+        assignment = get_object_or_404(Assignment,pk=pk)
+        submitted_assignment = assignment.submittedassignment_set.filter(user = request.user).first()
+        if not submitted_assignment:
+            submitted_assignment = SubmittedAssignment.objects.create(assignment = assignment, user = request.user)
+        submitted_assignment.turned_in = True 
+        submitted_assignment.save()
+        
+    return redirect('classroom:assignment_submit', pk)
