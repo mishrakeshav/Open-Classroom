@@ -134,3 +134,12 @@ def turnin(request,pk):
         submitted_assignment.save()
         
     return redirect('classroom:assignment_submit', pk)
+
+def unsubmit(request,pk):
+    if request.method == 'POST':
+        assignment = get_object_or_404(Assignment,pk=pk)
+        submitted_assignment = assignment.submittedassignment_set.filter(user = request.user).first()
+        submitted_assignment.turned_in = False  
+        submitted_assignment.save()
+        
+    return redirect('classroom:assignment_submit', pk)

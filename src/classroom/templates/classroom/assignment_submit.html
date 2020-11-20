@@ -58,7 +58,16 @@
             {% if assignment_files %}
                 <p>Submitted files</p>
                 {% for file in assignment_files %}
-                    <p>{{ file.files.name }}</p>
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ file.filename }}
+                      <button class="btn btn-circle">X</button>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ file.filename }}
+                      <button class="btn btn-circle">X</button>
+                    </li>
+                  </ul>
                 {% endfor %}
             {% endif %}
             {% if not submitted_assignment.turned_in %}
@@ -74,9 +83,10 @@
                   <button type="submit" class="btn btn-primary btn-block">Mark as done</button>
                 </form>
             {% else %}
-                <button class="btn btn-outline-dark btn-block">
-                    Unsubmit
-                </button>
+                <form action="{% url 'classroom:unsubmit' assignment.pk %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-dark btn-block">Unsubmit</button>
+                </form>
             {% endif %}
         {% else %}
             <form action="{% url 'classroom:assignment_submit' assignment.pk %}" method="post"  enctype='multipart/form-data'>
