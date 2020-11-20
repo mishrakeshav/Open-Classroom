@@ -94,6 +94,7 @@ def members(request, pk):
     }
     return render(request, 'classroom/members.html', context)
 
+@login_required
 def assignment_submit(request, pk):
     if request.method=='POST':
         print('here 1')
@@ -124,6 +125,7 @@ def assignment_submit(request, pk):
     }
     return render(request, 'classroom/assignment_submit.html', context)
 
+@login_required
 def turnin(request,pk):
     if request.method == 'POST':
         assignment = get_object_or_404(Assignment,pk=pk)
@@ -135,6 +137,7 @@ def turnin(request,pk):
         
     return redirect('classroom:assignment_submit', pk)
 
+@login_required
 def unsubmit(request,pk):
     if request.method == 'POST':
         assignment = get_object_or_404(Assignment,pk=pk)
@@ -144,7 +147,7 @@ def unsubmit(request,pk):
         
     return redirect('classroom:assignment_submit', pk)
 
-
+@login_required
 def unsubmit_file(request, pk):
     if request.method == 'POST':
         assignment_file = get_object_or_404(AssignmentFile, pk=pk)
@@ -157,3 +160,7 @@ def unsubmit_file(request, pk):
             assignment_file.delete()
         return redirect('classroom:assignment_submit', assignment_pk)
 
+@login_required
+def todo(request):
+    context = {}
+    return render(request, 'classroom/todo.html', context)
