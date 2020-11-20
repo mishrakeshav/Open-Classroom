@@ -143,3 +143,17 @@ def unsubmit(request,pk):
         submitted_assignment.save()
         
     return redirect('classroom:assignment_submit', pk)
+
+
+def unsubmit_file(request, pk):
+    if request.method == 'POST':
+        assignment_file = get_object_or_404(AssignmentFile, pk=pk)
+        assignment_pk = assignment_file.submitted_assignment.assignment.pk
+        if assignment_file.submitted_assignment.user == request.user:
+            if assignment_file.submitted_assignment.turned_in:
+                submitted_assignment = assignment_file.submitted_assignment
+                submitted_assignment.turned_in = False  
+                submitted_assignment.save()
+            assignment_file.delete()
+        return redirect('classroom:assignment_submit', assignment_pk)
+

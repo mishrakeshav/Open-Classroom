@@ -60,12 +60,11 @@
                 {% for file in assignment_files %}
                   <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ file.filename }}
-                      <button class="btn btn-circle">X</button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ file.filename }}
-                      <button class="btn btn-circle">X</button>
+                        <a href="{{ file.files.url }}">{{ file.filename }}</a>
+                        <form action="{% url 'classroom:unsubmit_file' file.pk %}" method="post">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-circle">X</button>
+                        </form>
                     </li>
                   </ul>
                 {% endfor %}
