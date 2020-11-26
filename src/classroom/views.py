@@ -44,17 +44,18 @@ def create_classroom(request):
 
 @login_required
 def join_classroom(request):
-    print('IN CREATE_CLASSROOM')
     if request.method == 'POST':
         print('fORM vaLID')
         form = JoinClassroomForm(request.POST)
         if form.is_valid(): 
             classroom = Classroom.objects.filter(classroom_code = form.cleaned_data.get('code')).first()
-            # print(classroom.users.create(request.user))
-            request.user.classroom_set.add(classroom)
-            messages.success(request, f'You are added in {classroom.name}')
+            if classroom:
+                request.user.classroom_set.add(classroom)
+                messages.success(request, f'You are added in {classroom.name}')
+            else:
+                messages.success(request, f'Error adding you to the classroom')
         else:
-            messages.danger(request, f'Error adding you to the classroom')
+            messages.success(request, f'Error adding you to the classroom')
     return redirect('classroom:home')
 
 @login_required
@@ -189,7 +190,15 @@ def unsubmit_file(request, pk):
 
 @login_required
 def todo(request):
-    context = {}
+    classrooms = request.user.classroom_set.all()
+    topics = []
+    for classroom in classrooms:
+        topics.extend(list(classroom.topic_set.all()))
+    assignments = []
+    for topic in topics:
+        assignments.extend(list(topic.assignment_set.all()))
+    context = {'assignments':assignments}
+    print(assignments)
     return render(request, 'classroom/todo.html', context)
 
 @login_required
