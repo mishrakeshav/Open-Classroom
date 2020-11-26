@@ -5,6 +5,7 @@
 {% block title %} Assignment-Create {% endblock title %}
 
 {% block content %}
+<form action="" method="POST">
     <nav class="navbar navbar-light bg-light">
         <div class="navbar-brand">
             <a href=""><i class="fas fa-times"></i></a>
@@ -12,7 +13,7 @@
         </div>
         <form class="form-inline">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-secondary">Assign</button>
+                <button type="submit" class="btn btn-secondary">Assign</button>
                 
                 <div class="btn-group" role="group">
                     <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,15 +31,15 @@
         <div class="col-lg-8">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" type="">
+                {{ form.title|attr:"class:form-control" }}
             </div>
             <hr>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control"></textarea>
+                {{ form.description|attr:"class:form-control" }}
             </div>
             <hr>
-            <button class="btn btn-outline-primary"> <i class="fa fa-paperclip  pr-1" aria-hidden="true"></i>  Add</button>
+            {{ form.file_field|attr:"class:choose" }}
         </div>
         <!-- <div class="col-1">
             <div class="vl d-sm-none d-md-block"></div>
@@ -50,11 +51,7 @@
             <h5>For</h5>
             <div class="row">
                 <div class="col">
-                    <select id="" class="form-control" name="">
-                        {% for classroom in classrooms %}
-                            <option value="">{{ classroom.name }}</option>
-                        {% endfor %}
-                    </select>
+                    {{ form.classrooms|attr:"class:form-control" }}
                 </div>
                 <!-- <div class="col">
                     <select id="" class="form-control" name="">
@@ -69,8 +66,8 @@
             <!-- Points -->
             <h5>Points</h5>
             <div class="row">
-                <div class="col-6">
-                    <input type="number" class="form-control" min="0">
+                <div class="col">
+                    {{ form.points|attr:"class:form-control" }}
                 </div>
             </div>
             <hr>
@@ -79,7 +76,7 @@
             <h5>Due</h5>
             <div class="row">
                 <div class="col">
-                    <input type="date" class="form-control">
+                    {{ form.due_date|attr:"class:form-control"|attr:"type:datetime-local" }}
                 </div>
             </div>
             <hr>
@@ -88,11 +85,7 @@
             <h5>Topic</h5>
             <div class="row">
                 <div class="col">
-                    <select id="" class="form-control" name="">
-                        {% for topic in topics %}
-                            <option value="">{{ topic.classroom.name }} -> {{ topic.name }}</option>
-                        {% endfor %}
-                    </select>
+                    {{ form.topics|attr:"class:form-control" }}
                 </div>
             </div>
             <hr>
@@ -100,4 +93,5 @@
         </div>
 
     </div>
+</form>
 {% endblock content %}

@@ -4,9 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-from .models import Classroom,Topic
+from .models import Classroom,Topic,ClassroomTeachers
 from posts.models import Assignment,SubmittedAssignment,AssignmentFile
-from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm
+from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm, AssignmentCreateForm
 
 
 @login_required
@@ -35,6 +35,8 @@ def create_classroom(request):
             classroom.save()
             topic = Topic(name = 'General' , classroom = classroom)
             topic.save()
+            classroom_teachers = ClassroomTeachers(classroom = classroom, teacher=request.user)
+            classroom_teachers.save()
             messages.success(request, f'Classroom {name} created !')
         else:
             messages.danger(request, f'Classroom Could not be created :(')
@@ -96,13 +98,14 @@ def members(request, pk):
 
 @login_required
 def assignment_create(request):
-    classrooms = list(map(lambda x: x.classroom, request.user.classroomteachers_set.all()))
-    topics = []
-    for classroom in classrooms:
-        topics.extend(list(classroom.topic_set.all()))
-
-    print(topics)
-    context = {'classrooms': classrooms, 'topics':topics}
+    if request.method == 'POST':
+        pass 
+    # classrooms = list(map(lambda x: x.classroom, request.user.classroomteachers_set.all()))
+    # topics = []
+    # for classroom in classrooms:
+    #     topics.extend(list(classroom.topic_set.all()))
+    form = AssignmentCreateForm(request.user)
+    context = {'form':form}
     return render(request, 'classroom/assignment_create.html', context)
 
 
