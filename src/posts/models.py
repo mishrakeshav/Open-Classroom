@@ -19,6 +19,14 @@ class Post(models.Model):
     @property
     def resources(self):
         return self.resource_set.all()
+    
+    @property
+    def content_type(self):
+        return 'post'
+    
+    @property
+    def post_comment(self):
+        return list(self.comment_set.all())
 
 class Assignment(models.Model):
     title = models.CharField(max_length=250)
@@ -34,6 +42,10 @@ class Assignment(models.Model):
     @property
     def resources(self):
         return self.attachment_set.all()
+    
+    @property
+    def content_type(self):
+        return 'assignment'
 
 class SubmittedAssignment(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete = models.CASCADE)

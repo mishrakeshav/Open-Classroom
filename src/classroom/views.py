@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Classroom,Topic,ClassroomTeachers
 from posts.models import Assignment,SubmittedAssignment,AssignmentFile, Attachment
 from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm, AssignmentCreateForm
-
+from comments.forms import CommentCreateForm
 
 @login_required
 def home(requests):
@@ -70,12 +70,14 @@ def open_classroom(requests,pk):
     contents.sort(key = lambda x: x.created_at)
 
     post_form = PostForm()
+    comment_form = CommentCreateForm()
 
     context = {
         'title' : 'Classroom',
         'classroom' : classroom,
         'contents': reversed(contents),
-        'post_form': post_form
+        'post_form': post_form,
+        'comment_form': comment_form,
     }
 
     return render(requests, 'classroom/classroom.html', context)
