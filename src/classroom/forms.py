@@ -20,7 +20,7 @@ class AssignmentFileForm(forms.Form):
 
 class AssignmentCreateForm(forms.Form):
     def __init__(self,user,*args, **kwargs):
-        super().__init__(*args,**kwargs)
+        super(AssignmentCreateForm, self).__init__(*args,**kwargs)
         classrooms = list(map(lambda x: x.classroom, user.classroomteachers_set.all()))
         topics = []
         self.fields['classrooms'].choices = [(str(classroom.pk),classroom.name) for classroom in classrooms]
@@ -34,4 +34,4 @@ class AssignmentCreateForm(forms.Form):
     topics = forms.ChoiceField()
     points = forms.IntegerField(min_value=0,max_value =100)
     due_date = forms.DateTimeField()
-    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True})) 

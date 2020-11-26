@@ -15,10 +15,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-    @property
-    def content_type(self):
-        return 'post'
     
     @property
     def resources(self):
@@ -30,14 +26,14 @@ class Assignment(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    
+    due_date = models.DateTimeField()
 
     def __str__(self):
         return self.title
-    
+
     @property
-    def content_type(self):
-        return 'assignment'
+    def resources(self):
+        return self.attachment_set.all()
 
 class SubmittedAssignment(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete = models.CASCADE)

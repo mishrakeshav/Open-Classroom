@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from .models import Classroom,Topic,ClassroomTeachers
-from posts.models import Assignment,SubmittedAssignment,AssignmentFile
+from posts.models import Assignment,SubmittedAssignment,AssignmentFile, Attachment
 from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm, AssignmentCreateForm
 
 
@@ -99,12 +99,24 @@ def members(request, pk):
 @login_required
 def assignment_create(request):
     if request.method == 'POST':
-        pass 
-    # classrooms = list(map(lambda x: x.classroom, request.user.classroomteachers_set.all()))
-    # topics = []
-    # for classroom in classrooms:
-    #     topics.extend(list(classroom.topic_set.all()))
-    form = AssignmentCreateForm(request.user)
+        form = AssignmentCreateForm(request.user, request.POST, request.FILES)
+        if form.is_valid():
+            topic = get_object_or_404(Topic, pk=int(form.cleaned_data['topics']))
+            assignment = Assignment(
+                title = form.cleaned_data['title'],
+                description = form.cleaned_data['description'],
+                created_by = request.user,
+                topic = topic,
+                due_date = form.cleaned_data['due_date']
+            )
+            assignment.save()
+            files = request.FILES.getlist('file_field')
+            for f in files:
+                Attachment.objects.create(assignment = assignment,files=f)
+            return redirect('classroom:open_classroom', topic.classroom.pk)
+
+    else:
+        form = AssignmentCreateForm(request.user)
     context = {'form':form}
     return render(request, 'classroom/assignment_create.html', context)
 
