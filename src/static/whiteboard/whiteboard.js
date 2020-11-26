@@ -40,9 +40,6 @@ $('#chooseBlueSimpleColors').click(()=>{
 $('#chooseBlackSimpleColors').click(()=>{
     curColor = colorBlack;
 })
-$('#chooseWhiteSimpleColors').click(()=>{
-    curColor = colorWhite;
-})
 var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
@@ -53,7 +50,6 @@ var colorBrown = "#290001";
 var colorRed = "red";
 var colorBlue = "blue";
 var colorBlack = "black";
-var colorWhite = "white";
 
 var curColor = colorPurple;
 var clickColor = new Array();
