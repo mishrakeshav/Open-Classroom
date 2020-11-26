@@ -95,6 +95,18 @@ def members(request, pk):
     return render(request, 'classroom/members.html', context)
 
 @login_required
+def assignment_create(request):
+    classrooms = list(map(lambda x: x.classroom, request.user.classroomteachers_set.all()))
+    topics = []
+    for classroom in classrooms:
+        topics.extend(list(classroom.topic_set.all()))
+
+    print(topics)
+    context = {'classrooms': classrooms, 'topics':topics}
+    return render(request, 'classroom/assignment_create.html', context)
+
+
+@login_required
 def assignment_submit(request, pk):
     if request.method=='POST':
         print('here 1')
