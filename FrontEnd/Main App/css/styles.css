@@ -1,3 +1,13 @@
-.text-none {
-    text-decoration: none;
+.vl {
+    border-left: 1px solid rgb(184, 182, 182);
+    height: 800px;
 }
+
+@media only screen and (max-width: 992px) {
+    .v{
+        height: auto;
+        border-left: 0px;
+    }
+}
+
+
