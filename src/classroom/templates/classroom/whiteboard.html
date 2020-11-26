@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} Whiteboard {% endblock title %}
+
+{% block content %}
+<button id="clear_complete" class="btn btn-outline-dark">Clear</button>
+    <!-- <input id="size" placeholder="Enter the size" /> -->
+    <span class="highlight"> Choose a color: </span>
+    <button id="choosePurpleSimpleColors"  class = "btn btn-info btn-circle" type="button"></button>
+    <button id="chooseGreenSimpleColors" class = "btn btn-success btn-circle" type="button"></button>
+    <button id="chooseYellowSimpleColors" class="btn btn-warning btn-circle" type="button"></button>
+    <button id="chooseBrownSimpleColors" class = "btn btn-circle" style="background-color: #290001;" type="button"></button>
+    <button id="chooseRedSimpleColors" class="btn btn-danger btn-circle" type="button"></button>
+    <button id="chooseBlueSimpleColors" class = "btn btn-primary btn-circle" type="button"></button>
+    <button id="chooseBlackSimpleColors" class="btn btn-dark btn-circle" type="button">  </button>
+    <div id="canvas_div">
+        <canvas id="white_board" height="500" width="1000" style="border: 1px solid "></canvas>
+    </div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="{% static 'whiteboard/whiteboard.js' %}"></script>
+{% endblock content %}

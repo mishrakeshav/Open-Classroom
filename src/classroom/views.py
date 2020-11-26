@@ -179,3 +179,8 @@ def unsubmit_file(request, pk):
 def todo(request):
     context = {}
     return render(request, 'classroom/todo.html', context)
+
+@login_required
+def whiteboard(request):
+    context = {}
+    return render(request, 'classroom/whiteboard.html', context)

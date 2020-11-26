@@ -16,4 +16,5 @@ urlpatterns = [
     path('assignment/<int:pk>/unsubmit/', views.unsubmit, name = 'unsubmit'),
     path('assignment/<int:pk>/unsubmit_file/', views.unsubmit_file, name = 'unsubmit_file'),
     path('todo/', views.todo, name = 'todo'),
+    path('whiteboard/', views.whiteboard, name = 'whiteboard'),
 ]
