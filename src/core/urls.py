@@ -30,6 +30,7 @@ urlpatterns = [
     path('classroom/',include('classroom.urls')),
     path('', views.landing, name='landing-page'),
     path('users/', include('users.urls')),
+    path('courses/', include('courses.urls')),
     path('posts/', include('posts.urls')),
     path('whiteboard/', include('whiteboard.urls')),
     path('assignments/', include('assignments.urls')),

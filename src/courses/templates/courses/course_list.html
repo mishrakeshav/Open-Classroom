@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+<div class="row">
+    <!-- CARD -->
+    {% for course in courses %}
+        <div class="col-3">
+            <div class="card shadow">
+                <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="">
+                <div class="card-body">
+                    <h5 class="card-title text-dark font-weight-bold">{{ course.title }}</h5>
+                    <p class="card-text">{{ course.description }}</p>
+                    <div class="row">
+                        <a class="btn btn-primary" href="{{ course.link }}" target="_blank">Go to the course</a>
+                    <a class="ml-auto btn btn-primary" href=""><i class="fa fa-star-o"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- END CARD -->
+    {% endfor %}
+</div>
+{% endblock content %}
