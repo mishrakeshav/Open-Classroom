@@ -73,7 +73,6 @@ def open_classroom(requests,pk):
     comment_form = CommentCreateForm()
 
     context = {
-        'title' : 'Classroom',
         'classroom' : classroom,
         'contents': reversed(contents),
         'post_form': post_form,
@@ -220,5 +219,10 @@ def classwork(request, pk):
     assignments = []
     for topic in classroom.topic_set.all():
         assignments.extend(list(topic.assignment_set.all()))
-    context = {'assignments':assignments }
+    context = {'assignments':assignments}
     return render(request, 'classroom/classwork.html', context)
+
+@login_required
+def toreview(request):
+    context = {}
+    return render(request, 'classroom/toreview.html', context)

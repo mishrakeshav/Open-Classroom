@@ -52,12 +52,14 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-      <a class="nav-link" href="#" >
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Classworks</span>
-      </a>
-    </li>
+    {% if 'open' in request.path %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'classroom:classwork' classroom.pk %}" >
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Classworks</span>
+        </a>
+      </li>
+    {% endif %}
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
