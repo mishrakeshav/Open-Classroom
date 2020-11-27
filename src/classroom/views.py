@@ -4,10 +4,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-from .models import Classroom,Topic
-from posts.models import Assignment,SubmittedAssignment,AssignmentFile
-from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm
-
+from .models import Classroom,Topic,ClassroomTeachers
+from posts.models import Assignment,SubmittedAssignment,AssignmentFile, Attachment
+from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm, AssignmentCreateForm
+from comments.forms import CommentCreateForm, PrivateCommentForm
 
 @login_required
 def home(requests):
@@ -35,6 +35,8 @@ def create_classroom(request):
             classroom.save()
             topic = Topic(name = 'General' , classroom = classroom)
             topic.save()
+            classroom_teachers = ClassroomTeachers(classroom = classroom, teacher=request.user)
+            classroom_teachers.save()
             messages.success(request, f'Classroom {name} created !')
         else:
             messages.danger(request, f'Classroom Could not be created :(')
@@ -42,17 +44,18 @@ def create_classroom(request):
 
 @login_required
 def join_classroom(request):
-    print('IN CREATE_CLASSROOM')
     if request.method == 'POST':
         print('fORM vaLID')
         form = JoinClassroomForm(request.POST)
         if form.is_valid(): 
             classroom = Classroom.objects.filter(classroom_code = form.cleaned_data.get('code')).first()
-            # print(classroom.users.create(request.user))
-            request.user.classroom_set.add(classroom)
-            messages.success(request, f'You are added in {classroom.name}')
+            if classroom:
+                request.user.classroom_set.add(classroom)
+                messages.success(request, f'You are added in {classroom.name}')
+            else:
+                messages.success(request, f'Error adding you to the classroom')
         else:
-            messages.danger(request, f'Error adding you to the classroom')
+            messages.success(request, f'Error adding you to the classroom')
     return redirect('classroom:home')
 
 @login_required
@@ -67,12 +70,14 @@ def open_classroom(requests,pk):
     contents.sort(key = lambda x: x.created_at)
 
     post_form = PostForm()
+    comment_form = CommentCreateForm()
 
     context = {
         'title' : 'Classroom',
         'classroom' : classroom,
-        'contents': contents,
-        'post_form': post_form
+        'contents': reversed(contents),
+        'post_form': post_form,
+        'comment_form': comment_form,
     }
 
     return render(requests, 'classroom/classroom.html', context)
@@ -95,9 +100,33 @@ def members(request, pk):
     return render(request, 'classroom/members.html', context)
 
 @login_required
+def assignment_create(request):
+    if request.method == 'POST':
+        form = AssignmentCreateForm(request.user, request.POST, request.FILES)
+        if form.is_valid():
+            topic = get_object_or_404(Topic, pk=int(form.cleaned_data['topics']))
+            assignment = Assignment(
+                title = form.cleaned_data['title'],
+                description = form.cleaned_data['description'],
+                created_by = request.user,
+                topic = topic,
+                due_date = form.cleaned_data['due_date']
+            )
+            assignment.save()
+            files = request.FILES.getlist('file_field')
+            for f in files:
+                Attachment.objects.create(assignment = assignment,files=f)
+            return redirect('classroom:open_classroom', topic.classroom.pk)
+
+    else:
+        form = AssignmentCreateForm(request.user)
+    context = {'form':form}
+    return render(request, 'classroom/assignment_create.html', context)
+
+
+@login_required
 def assignment_submit(request, pk):
     if request.method=='POST':
-        print('here 1')
         assignment = get_object_or_404(Assignment,pk=pk)
         submitted_assignment = assignment.submittedassignment_set.filter(user = request.user).first()
         if not submitted_assignment:
@@ -108,8 +137,13 @@ def assignment_submit(request, pk):
             AssignmentFile.objects.create(submitted_assignment = submitted_assignment,files=f)
     
     form = AssignmentFileForm()
+    private_comment_form = PrivateCommentForm()
     assignment = get_object_or_404(Assignment, pk=pk)
     submit_assignment = assignment.submittedassignment_set.filter(user=request.user)
+    classroom_teachers = list(map(lambda teaches: teaches.teacher, assignment.topic.classroom.classroomteachers_set.all()))
+    print(classroom_teachers)
+    is_teacher = request.user in classroom_teachers
+    print(is_teacher)
     if submit_assignment:
         submit_assignment = submit_assignment.first()
         assignment_files = submit_assignment.assignmentfile_set.all()
@@ -121,7 +155,9 @@ def assignment_submit(request, pk):
         'attachments': assignment.attachment_set.all(),
         'submitted_assignment': submit_assignment,
         'assignment_files': assignment_files,
-        'form':form
+        'form':form,
+        'private_comment_form': private_comment_form,
+        'is_teacher': is_teacher,
     }
     return render(request, 'classroom/assignment_submit.html', context)
 
@@ -162,5 +198,18 @@ def unsubmit_file(request, pk):
 
 @login_required
 def todo(request):
-    context = {}
+    classrooms = request.user.classroom_set.all()
+    topics = []
+    for classroom in classrooms:
+        topics.extend(list(classroom.topic_set.all()))
+    assignments = []
+    for topic in topics:
+        assignments.extend(list(topic.assignment_set.all()))
+    context = {'assignments':assignments}
+    print(assignments)
     return render(request, 'classroom/todo.html', context)
+
+@login_required
+def whiteboard(request):
+    context = {}
+    return render(request, 'classroom/whiteboard.html', context)

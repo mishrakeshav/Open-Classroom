@@ -5,164 +5,50 @@
 {% block title %} Home {% endblock title %}
 
 {% block content %}
-        <div class="col-lg-8 mx-auto">
-<!----------------------------------------------------------------Classrooms-------------------------------------------------------------------------------------------------->
-        <ul class="navbar-nav" id="accordionExample">
-            <li class="nav-item">
-                <div class="btn-group">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Python SE-IT
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">All Classes</a>
-                        <div class="collapse-divider"><hr></div>
-                        <a class="dropdown-item" href="#">BCE</a>
-                        <a class="dropdown-item" href="#">Internet Programming</a>
-                    </div>
+<div class="container">
+    <ul class="navbar-nav" id="accordionExample">
+        <li class="nav-item">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Python SE-IT
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">All Classes</a>
+                    <div class="collapse-divider"><hr></div>
+                    <a class="dropdown-item" href="#">BCE</a>
+                    <a class="dropdown-item" href="#">Internet Programming</a>
                 </div>
-            </li>
-<!-----------------------------------------------------------------No Due Date-------------------------------------------------------------------------------------->
-            <li class="nav-item mt-4">
-                <h5 class="mb-0">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapsePages">
-                        <div class="row ">
-                            <p class="text-dark">No Due Date</p>
-                            <p class="ml-auto text-dark">2</p>
-                        </div>
-                    </a>
-                </h5>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <button class="btn btn-light p-3 btn-block">
-                    <div class="row">
-                    <div class="col-lg-12">
+        </li>
+        <li class="nav-item mt-4">
+            <h5 class="mb-0">
+                <a class="nav-link toggle" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapsePages">
+                    <div class="row ">
+                        <p class="text-dark ml-4">No Due Date</p>
+                        <p class="ml-auto text-dark">2</p>
+                    </div>
+                </a>
+            </h5>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                {% for assignment in assignments %}
+                <a href="#" class="card bg-transparent border-light p-1 text-decoration-none">
+                    <div class="card-body">
                         <div class="row">
-                            <h6 class="text-primary font-weight-bold">Assignment No. 1: Module 1 Basics of Python</h6>			
+                            <div class="col-lg-12">
+                                    <h4 class="text-primary font-weight-bold">{{ assignment.title }}</h4>			
+                            </div>
+                            <div class="col-lg-12">
+                                <p class="text-dark float-left">{{ assignment.topic.classroom.name }}</p>
+                                <p class="text-dark font-weight-bold float-right">Posted {{ assignment.created_at }} <br> Due on {{ assignment.due_date }}</p>
+                            </div>
+                                     
                         </div>
                     </div>
-                        <div class="col-lg-8">
-                        <div class="row">
-                            <p class="text-dark">Python SE-IT</p>
-                        </div>
-                        </div>
-                        <div class="col-lg-4">
-                        <div class="row">
-                            <p class="text-dark font-weight-bold">Posted Wednesday,Feb 12</p>
-                        </div>
-                        </div>
-            
-                    </div>
-                    </button>
-                    <hr>
-                    <button class="btn btn-light p-3 btn-block">
-                    <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <h6 class="text-primary font-weight-bold">Assignment No. 2: Loops in Python</h6>			
-                        </div>
-                    </div>
-                        <div class="col-lg-8">
-                        <div class="row">
-                            <p class="text-dark">Python SE-IT</p>
-                        </div>
-                        </div>
-                        <div class="col-lg-4">
-                        <div class="row">
-                            <p class="text-dark font-weight-bold">Posted Wednesday,Feb 12</p>
-                        </div>
-                        </div>
-            
-                    </div>
-                    </button>
-                </div>
-            </li>
-<!-----------------------------------------------------------------This Week-------------------------------------------------------------------------------------->
-            <li class="nav-item mt-4">
-                <h5 class="mb-0">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTw" aria-expanded="true" aria-controls="collapsePages">
-                        <div class="row">
-                            <p class="text-dark">This Week</p>
-                            <p class="ml-auto text-dark">1</p>
-                        </div>
-                    </a>
-                </h5>
-                <div id="collapseTw" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <button class="btn btn-light p-3 btn-block">
-                    <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <h6 class="text-primary font-weight-bold">Assignment No. 2: Loops in Python</h6>			
-                        </div>
-                    </div>
-                        <div class="col-lg-8">
-                        <div class="row">
-                            <p class="text-dark">Python SE-IT</p>
-                        </div>
-                        </div>
-                        <div class="col-lg-4">
-                        <div class="row">
-                            <p class="text-dark font-weight-bold">Wednesday,11:59 PM</p>
-                        </div>
-                        </div>
-            
-                    </div>
-                    </button>
-                </div>
-            </li>
-<!-----------------------------------------------------------------Next Week-------------------------------------------------------------------------------------->
-            <li class="nav-item mt-4 ">
-                <h5 class="mb-0">
-                    <a class="nav-link " href="#" data-toggle="collapse" data-target="#collapseTh" aria-expanded="true" aria-controls="collapsePages">
-                        <div class="row">
-                            <p class="text-dark">Next Week</p>
-                            <p class="ml-auto text-dark">0</p>
-                        </div>
-                    </a>
-                </h5>
-                <!--div id="collapseTh" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <button class="btn btn-light p-3 btn-block">
-                    <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <h5 class="text-primary font-weight-bold">Assignment No. 2: Loops in Python</h5>			
-                        </div>
-                    </div>
-                        <div class="col-lg-8">
-                        <div class="row">
-                            <p class="text-dark">Python SE-IT</p>
-                        </div>
-                        </div>
-                        <div class="col-lg-4">
-                        <div class="row">
-                            <p class="text-dark font-weight-bold">Posted Wednesday,Feb 12</p>
-                        </div>
-                        </div>
-            
-                    </div>
-                    </button>
-                </div-->
-            </li>
-<!-----------------------------------------------------------------Later-------------------------------------------------------------------------------------->
-            <li class="nav-item mt-4">
-                <h5 class="mb-0">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseFo" aria-expanded="true" aria-controls="collapsePages">
-                        <div class="row">
-                            <p class="text-dark">Later</p>
-                            <p class="ml-auto text-dark">0</p>
-                        </div>
-                    </a>
-                </h5>
-                <!--<div id="collapseFo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <button class="btn btn-light p-3 btn-block">
-                        <div class="row">
-                            <h5 class="text-primary font-weight-bold">Assignment No. 1: Module 1 Basics of Python</h5>			
-                        </div>
-                        <div class="row">
-                            <p class="text-dark">Python SE-IT</p>
-                            <p class="ml-auto text-dark font-weight-bold">Wednesday, 11:59 PM</p>
-                        </div>
-                    </button>
-                </div-->
-            </li>			
-            </ul>
-        </div>
+                </a>
+                <hr>
+                {% endfor %}
+                
+            </div>
+        </li>        
+    </ul>
+</div>
+
 {% endblock content %}

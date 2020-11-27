@@ -31,7 +31,7 @@ class Topic(models.Model):
     classroom = models.ForeignKey(Classroom,on_delete = models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f'{self.classroom.name} -> {self.name}'
     
 
 

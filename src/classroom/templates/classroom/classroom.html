@@ -14,6 +14,8 @@
         <div class="card-img-overlay">
             <h1 class="card-title"><b>{{ classroom.name }}</b></h1>
             <p class="card-text">{{ classroom.description }}</p>
+            <input type="text"  value="{{ classroom.classroom_code }}" id="classroom-code">
+            <button class = "btn btn-sm btn-outline-primary" onclick="copyCode()">Copy</button>
         </div>
         </div>
     </div>
@@ -92,7 +94,6 @@
                                     <!-- End Container -->
                                     <!-- CARD -->
 
-                                    {% if content.content_type == 'post' %}
                                     <div class="row">
                                         {% for resource in content.resources %}
                                         <div class="col-6">
@@ -112,17 +113,31 @@
                                         </div>
                                         {% endfor %}
                                     </div>
-                                    {% endif %}
-                                    <!-- END CARD -->
                                 </div>
+
                                 {% if content.content_type == 'post' %}
-                                <div class="input-group mb-3 mt-3">
-                                    <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                                    <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <div class="input-group-append">
-                                        <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                    <hr>
+                                    <div class="card-body">
+                                        {% for comment in content.post_comment %}
+                                            <div class="d-flex flex-row">
+                                                <img src="{{ comment.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle mr-2">
+                                                <p class='ml-2'><strong>{{ comment.user }}</strong>: {{ comment.comment_text}}</p>
+                                            </div>
+                                        {% endfor %}
                                     </div>
-                                </div>
+                                    <hr>
+                                    <div class="card-body">
+                                        <form  action="{% url 'comments:create_comment' content.pk %}" method="post">
+                                            <div class="input-group">
+                                            <img src="{{ request.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                                {% csrf_token %}
+                                                {{ comment_form.comment_text|attr:"class:form-control rounded-pill"|attr:"placeholder:Add a class comment" }}
+                                                <div class="input-group-append">
+                                                    <button class=" btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 {% endif %}
                             </div>
                             <!-- END CARD -->
