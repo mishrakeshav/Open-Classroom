@@ -46,6 +46,10 @@ class Assignment(models.Model):
     @property
     def content_type(self):
         return 'assignment'
+    
+    @property
+    def comments(self):
+        return list(self.privatecomment_set.all())
 
 class SubmittedAssignment(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete = models.CASCADE)

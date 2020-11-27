@@ -121,7 +121,7 @@
                                         {% for comment in content.post_comment %}
                                             <div class="d-flex flex-row">
                                                 <img src="{{ comment.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle mr-2">
-                                                <p><strong>{{ comment.user }}</strong>: {{ comment.comment_text}}</p>
+                                                <p class='ml-2'><strong>{{ comment.user }}</strong>: {{ comment.comment_text}}</p>
                                             </div>
                                         {% endfor %}
                                     </div>

@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Classroom,Topic,ClassroomTeachers
 from posts.models import Assignment,SubmittedAssignment,AssignmentFile, Attachment
 from .forms import ClassroomCreationForm,JoinClassroomForm, PostForm, AssignmentFileForm, AssignmentCreateForm
-from comments.forms import CommentCreateForm
+from comments.forms import CommentCreateForm, PrivateCommentForm
 
 @login_required
 def home(requests):
@@ -127,7 +127,6 @@ def assignment_create(request):
 @login_required
 def assignment_submit(request, pk):
     if request.method=='POST':
-        print('here 1')
         assignment = get_object_or_404(Assignment,pk=pk)
         submitted_assignment = assignment.submittedassignment_set.filter(user = request.user).first()
         if not submitted_assignment:
@@ -138,8 +137,13 @@ def assignment_submit(request, pk):
             AssignmentFile.objects.create(submitted_assignment = submitted_assignment,files=f)
     
     form = AssignmentFileForm()
+    private_comment_form = PrivateCommentForm()
     assignment = get_object_or_404(Assignment, pk=pk)
     submit_assignment = assignment.submittedassignment_set.filter(user=request.user)
+    classroom_teachers = list(map(lambda teaches: teaches.teacher, assignment.topic.classroom.classroomteachers_set.all()))
+    print(classroom_teachers)
+    is_teacher = request.user in classroom_teachers
+    print(is_teacher)
     if submit_assignment:
         submit_assignment = submit_assignment.first()
         assignment_files = submit_assignment.assignmentfile_set.all()
@@ -151,7 +155,9 @@ def assignment_submit(request, pk):
         'attachments': assignment.attachment_set.all(),
         'submitted_assignment': submit_assignment,
         'assignment_files': assignment_files,
-        'form':form
+        'form':form,
+        'private_comment_form': private_comment_form,
+        'is_teacher': is_teacher,
     }
     return render(request, 'classroom/assignment_submit.html', context)
 

@@ -104,14 +104,28 @@
       </div>
 
       <div class="card p-1 m-3 shadow">
-        <div class="input-group mb-3 mt-3">
-          <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-          <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-          <div class="input-group-append">
-            <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
-          </div>
+        <div class="m-4">
+          {% for comment in assignment.comments %}
+            {% if is_teacher or comment.user == request.user  %}
+            <div class="d-flex flex-row">
+                  <img src="{{ comment.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle mr-2">
+                  <p class='ml-3'><strong>{{ comment.user }}</strong>: {{ comment.comment_text}}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
         </div>
-
-    </div>
+      <div class="card-body">
+          <form  action="{% url 'comments:private_comment' assignment.pk %}" method="post">
+              <div class="input-group">
+              <img src="{{ request.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                  {% csrf_token %}
+                  {{ private_comment_form.comment_text|attr:"class:form-control rounded-pill"|attr:"placeholder:Add a private comment" }}
+                  <div class="input-group-append">
+                      <button class=" btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                  </div>
+              </div>
+          </form>
+      </div>
+      </div>
 </div>
 {% endblock content %}
