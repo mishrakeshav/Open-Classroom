@@ -213,3 +213,12 @@ def todo(request):
 def whiteboard(request):
     context = {}
     return render(request, 'classroom/whiteboard.html', context)
+
+@login_required
+def classwork(request, pk):
+    classroom = get_object_or_404(Classroom,pk=pk)
+    assignments = []
+    for topic in classroom.topic_set.all():
+        assignments.extend(list(topic.assignment_set.all()))
+    context = {'assignments':assignments }
+    return render(request, 'classroom/classwork.html', context)

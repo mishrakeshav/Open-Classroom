@@ -31,3 +31,7 @@
 
     <script src="{% static 'mainapp/js/script.js' %}" defer></script>
 
+    {% if 'todo' in request.path %}
+        <script src="{% static 'mainapp/js/todo.js' %}" defer></script>
+    {% endif %}
+

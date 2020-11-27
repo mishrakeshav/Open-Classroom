@@ -29,7 +29,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#">
+      <a class="nav-link collapsed" href="{% url 'classroom:home' %}">
         <i class="fas fa-fw fa-cog"></i>
         <span>Classrooms</span>
       </a>
@@ -37,7 +37,7 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link" href="#" >
+      <a class="nav-link" href="{% url 'classroom:todo' %}" >
         <i class="fas fa-fw fa-wrench"></i>
         <span>To Do</span>
       </a>
@@ -61,9 +61,9 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-      <a class="nav-link" href="charts.html">
+      <a class="nav-link" href="{% url 'classroom:assignment_create' %}">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span></a>
+        <span>Create Assignment</span></a>
     </li>
 
     <!-- Nav Item - Tables -->

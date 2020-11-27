@@ -88,8 +88,12 @@
                                     </div>
                                     <!-- Container -->
                                     <div class="container">
-                                    <a href="#"><h4 class="text-primary">{{ content.title }}</h4></a>
-                                    <h6>Posted on {{ content.created_at }} By {{ content.created_by.username }}</h6>
+                                        {% if content.content_type == 'post' %}
+                                            <h4 class="text-primary">{{ content.title }}</h4>
+                                        {% else %}
+                                            <a href="{% url 'classroom:assignment_submit' content.pk %}"><h4 class="text-primary">{{ content.title }}</h4></a>
+                                        {% endif %}
+                                        <h6>Posted on {{ content.created_at }} By {{ content.created_by.username }}</h6>
                                     </div>
                                     <!-- End Container -->
                                     <!-- CARD -->
@@ -100,7 +104,7 @@
                                             <div class="card mb-3 ml-2">
                                                 <div class="row no-gutters">
                                                     <div class="col-md-4">
-                                                    <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" class="card-img img-fluid d-none d-lg-block" alt="...">
+                                                    <img src="{{ resource.files.url  }}" class="card-img img-fluid d-none d-lg-block" alt="...">
                                                     </div>
                                                     <div class="col-md-8">
                                                     <div class="card-body">
