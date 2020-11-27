@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>try</title>
+  <title>SB Admin 2 - Blank</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,14 +25,13 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js" defer></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/script2.js" defer></script>
-
+  <script src="js/sb-admin-2.min.js" defer></script>
   <style media="screen">
-    #panel {
-      display: none;
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
     }
   </style>
-
 </head>
 
 <body id="page-top">
@@ -337,19 +336,15 @@
                 </a>
               </div>
             </li>
-
           </ul>
-
         </nav>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <!-- ROW -->
           <div class="row">
-            <!-- Column -->
             <div class="col-12">
-              <!-- Button Start -->
+              <!-- start button -->
               <div class="container-fluid">
                 <div class="btn-group pl-4 pt-2 ml-4">
                   <button type="button" class="btn btn-primary btn-lg rounded-pill mb-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -361,150 +356,210 @@
                     <button class="dropdown-item btn-lg" type="button"><i class="fas fa-clipboard-list pr-2"> Question</i></button>
                   </div>
                 </div>
-                <!-- End Button -->
-                <div class="col-lg-9">
-                  <!-- ROW -->
-                  <div class="row">
-                    <div class="col-12 mb-2">
-                      <!-- flip -->
-                      <div id="flip" class="card shadow-sm collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <div class="card-body">
-                          <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                          <a class="text-decoration-none" href="#!">subject</a>
-                          <!-- Dropdown -->
-                          <div class="dropdown no-arrow float-right">
-                            <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#">Edit</a>
-                              <a class="dropdown-item" href="#">Delete</a>
-                            </div>
-                          </div>
-                          <em class="text-muted d-inline float-right">Draft</em>
-                        </div>
-                      </div>
-                      <!-- end flip -->
-
-                      <!-- panel -->
-                      <div id="collapseOne" class=" card collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                          <div class="container-fluid">
-                            <p>No due date</p>
-                            <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
-                              <div class="row no-gutters">
-                                <div class="col-md-4">
-                                  <img src="img/undraw_posting_photo.svg" class="card-img img-fluid d-none d-lg-block" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                  <div class="card-body">
-                                    <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
-                                    </h5>
+                <!-- end button -->
+                <div class="accordion" id="accordionExample">
+                  <!-- first card -->
+                  <div class="col-lg-9">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="" id="headingOne">
+                            <div class="card" type="card" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              <div class="card-body">
+                                <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                <a class="text-decoration-none" href="#!">subject</a>
+                                <div class="dropdown no-arrow float-right">
+                                  <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                                  </a>
+                                  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Edit</a>
+                                    <a class="dropdown-item" href="#">Delete</a>
                                   </div>
                                 </div>
+                                <em class="text-muted d-inline float-right">Edited Nov 26</em>
                               </div>
                             </div>
                           </div>
-                          <hr class="p-2">
-                          <a href="#" class="card-link">Edit assignment</a>
-                        </div>
-                      </div>
-                      <!-- end panel -->
-                    </div>
-                  </div>
-                  <!-- End ROW -->
-                </div>
 
-                <div class="col-lg-9">
-                  <!-- ROW -->
-                  <div class="row">
-                    <div class="col-12 mb-2">
-                      <!-- flip -->
-                      <div id="" class="card shadow-sm">
-                        <div class="card-body">
-                          <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                          <a class="text-decoration-none" href="#!">subject</a>
-                          <div class="dropdown no-arrow float-right">
-                            <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#">Edit</a>
-                              <a class="dropdown-item" href="#">Delete</a>
+                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                              <div class="container-fluid">
+                                <p>No due date</p>
+                                <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
+                                  <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                      <img src="img/undraw_posting_photo.svg" class="card-img img-fluid d-none d-lg-block" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                      <div class="card-body">
+                                        <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr class="p-2">
+                              <a href="#" class="card-link">Edit assignment</a>
                             </div>
                           </div>
-                          <em class="text-muted d-inline float-right">Posted Nov 26</em>
                         </div>
                       </div>
-                      <!-- end flip -->
-
-                      <!-- panel -->
-                      <div id="" class="card">
-                        <div class="card-body">
-                          <p>No due date</p>
-                          <hr class="p-2">
-                          <a href="#" class="card-link">Edit assignment</a>
-                        </div>
-                      </div>
-                      <!-- end panel -->
                     </div>
                   </div>
-                  <!-- End ROW -->
+                  <!-- end first card -->
+                  <!-- second card -->
+                  <div class="col-lg-9">
+                    <div class="row">
+                      <div class="col-12 ">
+                        <div class="card">
+                          <div class="" id="headingTwo">
+                            <div class="card collapsed" type="card" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <div class="card-body">
+                                <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                <a class="text-decoration-none" href="#!">subject</a>
+                                <div class="dropdown no-arrow float-right">
+                                  <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                                  </a>
+                                  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Edit</a>
+                                    <a class="dropdown-item" href="#">Delete</a>
+                                  </div>
+                                </div>
+                                <em class="text-muted d-inline float-right">Draft</em>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                              <div class="container-fluid">
+                                <p>No due date</p>
+                                <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
+                                  <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                      <img src="img/undraw_posting_photo.svg" class="card-img img-fluid d-none d-lg-block" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                      <div class="card-body">
+                                        <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr class="p-2">
+                              <a href="#" class="card-link">Edit assignment</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end second card -->
+                  <!-- third card -->
+                  <div class="col-lg-9">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                          <div class="" id="headingThree">
+                              <div class="card collapsed" type="card" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <div class="card-body">
+                                  <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                  <a class="text-decoration-none" href="#!">subject</a>
+                                  <div class="dropdown no-arrow float-right">
+                                    <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                      <a class="dropdown-item" href="#">Edit</a>
+                                      <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                  </div>
+                                  <em class="text-muted d-inline float-right">Draft</em>
+                                </div>
+
+                              </div>
+
+                          </div>
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                              <div class="container-fluid">
+                                <p>No due date</p>
+                                <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
+                                  <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                      <img src="img/undraw_posting_photo.svg" class="card-img img-fluid d-none d-lg-block" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                      <div class="card-body">
+                                        <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr class="p-2">
+                              <a href="#" class="card-link">Edit assignment</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <!-- end third card -->
               </div>
-
             </div>
-
           </div>
-
-
+          <!-- /.container-fluid -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Your Website 2020</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+      <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
 
 </body>
 

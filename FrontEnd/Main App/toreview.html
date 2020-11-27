@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>try</title>
+  <title>toreview</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,11 +25,12 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js" defer></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/script2.js" defer></script>
+  <script src="js/sb-admin-2.min.js" defer></script>
 
   <style media="screen">
-    #panel {
-      display: none;
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
     }
   </style>
 
@@ -345,119 +346,38 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <!-- ROW -->
           <div class="row">
-            <!-- Column -->
-            <div class="col-12">
-              <!-- Button Start -->
+            <div class="col-9">
               <div class="container-fluid">
-                <div class="btn-group pl-4 pt-2 ml-4">
-                  <button type="button" class="btn btn-primary btn-lg rounded-pill mb-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-plus mr-2"></i>
-                    Create
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item btn-lg" type="button"><i class="fas fa-clipboard-list pr-2"> Quiz Assignment</i></button>
-                    <button class="dropdown-item btn-lg" type="button"><i class="fas fa-clipboard-list pr-2"> Question</i></button>
-                  </div>
-                </div>
-                <!-- End Button -->
-                <div class="col-lg-9">
-                  <!-- ROW -->
-                  <div class="row">
-                    <div class="col-12 mb-2">
-                      <!-- flip -->
-                      <div id="flip" class="card shadow-sm collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <div class="card-body">
-                          <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                          <a class="text-decoration-none" href="#!">subject</a>
-                          <!-- Dropdown -->
-                          <div class="dropdown no-arrow float-right">
-                            <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#">Edit</a>
-                              <a class="dropdown-item" href="#">Delete</a>
-                            </div>
-                          </div>
-                          <em class="text-muted d-inline float-right">Draft</em>
+                <h5 class="d-inline">No due date</h5>
+                <h5 class="float-right">2</h5>
+                <a href="classroom.html">
+                  <div class="card mt-3 border-light p-1 mb-3 bg-light rounded" style="width:60px; height:20px;">
+                    <div class="card-body">
+                      <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle mr-2 mb-2 float-left">
+                      <div class="dropdown no-arrow float-right">
+                        <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-header">Dropdown Header:</div>
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                       </div>
-                      <!-- end flip -->
 
-                      <!-- panel -->
-                      <div id="collapseOne" class=" card collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                          <div class="container-fluid">
-                            <p>No due date</p>
-                            <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
-                              <div class="row no-gutters">
-                                <div class="col-md-4">
-                                  <img src="img/undraw_posting_photo.svg" class="card-img img-fluid d-none d-lg-block" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                  <div class="card-body">
-                                    <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
-                                    </h5>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <hr class="p-2">
-                          <a href="#" class="card-link">Edit assignment</a>
-                        </div>
-                      </div>
-                      <!-- end panel -->
+
                     </div>
-                  </div>
-                  <!-- End ROW -->
-                </div>
 
-                <div class="col-lg-9">
-                  <!-- ROW -->
-                  <div class="row">
-                    <div class="col-12 mb-2">
-                      <!-- flip -->
-                      <div id="" class="card shadow-sm">
-                        <div class="card-body">
-                          <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                          <a class="text-decoration-none" href="#!">subject</a>
-                          <div class="dropdown no-arrow float-right">
-                            <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#">Edit</a>
-                              <a class="dropdown-item" href="#">Delete</a>
-                            </div>
-                          </div>
-                          <em class="text-muted d-inline float-right">Posted Nov 26</em>
-                        </div>
-                      </div>
-                      <!-- end flip -->
-
-                      <!-- panel -->
-                      <div id="" class="card">
-                        <div class="card-body">
-                          <p>No due date</p>
-                          <hr class="p-2">
-                          <a href="#" class="card-link">Edit assignment</a>
-                        </div>
-                      </div>
-                      <!-- end panel -->
-                    </div>
                   </div>
-                  <!-- End ROW -->
-                </div>
+
+                </a>
+
               </div>
-
             </div>
-
           </div>
-
-
         </div>
         <!-- /.container-fluid -->
 
@@ -509,3 +429,23 @@
 </body>
 
 </html>
+
+<a href="To-do.html">
+  <div class="card border-light p-1 mb-3 bg-light rounded">
+    <div class="card-body">
+      <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle mr-2 mb-2 float-left">
+      <div class="dropdown no-arrow float-right">
+        <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-header">Dropdown Header:</div>
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

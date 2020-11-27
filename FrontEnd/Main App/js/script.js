@@ -17,3 +17,9 @@ $(function() {
     $(this).parents('.dropdown').find('button').text($(this).text());
   });
 });
+
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow");
+  });
+});

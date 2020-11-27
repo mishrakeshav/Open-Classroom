@@ -18,7 +18,6 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <script src="js/script.js" defer></script>
-  <a target="_blank" href="https://icons8.com/icons/set/clipboard">Clipboard icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
   <link rel="stylesheet" href="css/styles.css">
 
@@ -334,139 +333,103 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <!-- ROW -->
-          <div class="row">
-            <div class="col-12">
+          <div id="panel" class="card">
+            <div class="card-body">
               <div class="container-fluid">
-                <div class="btn-group pl-4 pt-2 ml-4">
-                  <button type="button" class="btn btn-primary btn-lg rounded-pill mb-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-plus mr-2"></i>
-                    Create
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item btn-lg" type="button"><i class="fas fa-clipboard-list pr-2"> Quiz Assignment</i></button>
-                    <button class="dropdown-item btn-lg" type="button"><i class="fas fa-clipboard-list pr-2"> Question</i></button>
-                  </div>
-                </div>
-                <div class="col-lg-9">
-                  <!-- ROW -->
-                  <div class="row flip">
-                    <div class="col-12 mb-2">
-                      <div id="flip" class="card shadow-sm">
-                        <div class="card-body">
-                          <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                          <a class="text-decoration-none" href="#!">subject</a>
+                <p>No due date</p>
+                <div class="row">
+                  <div class="col">
+                    <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
+                      <div class="row no-gutters">
+                        <div class="col-md-4">
+                          <img src="img/undraw_posting_photo.svg" class="card-img img-fluid d-none d-lg-block" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title "><a href="https://docs.google.com/forms/d/e/1FAIpQLSccgb82znneJJtvVPPMWOLtEwvIqbeyZyMtdpANa9_Bzh0uEA/viewform?usp=sf_link">Google Forms:sign in</a>
+                            </h5>
+                          </div>
                         </div>
                       </div>
-
-                      <div class="row mt-3">
-                        <div class="col-12 mb-2">
-                          <div id="clicked-post" class="card shadow-sm">
-                            <div class="card-body">
-                              <img src="img/icon.png" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                              <a class="text-decoration-none" href="#!">adsa</a>
-                            </div>
-                          </div>
-
-                      <!-- TEXT AREA -->
-                      <div id="post-textarea" class="card shadow-sm d-none">
-                        <div class="card-body">
-                          <div class="form-group">
-                            <textarea class="form-control bg-gray-200" id="exampleFormControlTextarea1" placeholder="Share Something" rows="3"></textarea>
-                          </div>
-                          <div class="float-left">
-                            <a class="nav-link dropdown-toggle " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fa fa-paperclip" aria-hidden="true"></i>
-                            </a>
-                            <div class="dropdown-list dropdown-menu shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                              <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="font-weight-bold">
-                                  <div class="text-truncate">File.</div>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
-                          <button class="btn btn-sm btn-primary m-1 pl-3 pr-3 float-right">
-                            Post
-                          </button>
-                          <button id="cancel-post" class="btn btn-sm btn-outline-dark m-1 float-right">
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                      <!-- END TEXT AREA -->
                     </div>
-                    <!-- END COL -->
-                    <!-- COL -->
+                  </div>
+                  <div class="col">
+                    <a class="kpDQ8 yHjGtf maXJsd MymH0d" target="_self" href="/u/1/c/MjE4MjE4MzY2NzMz/a/MjE4NzU2NjgyOTk3/submissions/by-status/and-sort-name/done"
+                      data-focus-id="/u/1/c/MjE4MjE4MzY2NzMz/a/MjE4NzU2NjgyOTk3/submissions/by-status/and-sort-name/done">
+                      <div class="qEVLZc zZN2Lb-Wvd9Cc VBEdtc-Wvd9Cc">0</div>
+                      <div class="dDKhVc zZN2Lb-Wvd9Cc VBEdtc-Wvd9Cc">Turned in</div>
+                    </a>
 
                   </div>
-                  <!-- END CARD -->
+                  <div class="col">
+                    <a class="kpDQ8 yHjGtf maXJsd MymH0d" target="_self" href="/u/1/c/MjE4MjE4MzY2NzMz/a/MjE4NzU2NjgyOTk3/submissions/by-status/and-sort-name/not-done"
+                      data-focus-id="/u/1/c/MjE4MjE4MzY2NzMz/a/MjE4NzU2NjgyOTk3/submissions/by-status/and-sort-name/not-done">
+                      <div class="qEVLZc zZN2Lb-Wvd9Cc VBEdtc-Wvd9Cc">2</div>
+                      <div class="dDKhVc zZN2Lb-Wvd9Cc VBEdtc-Wvd9Cc">Assigned</div>
+                    </a>
+
+                  </div>
                 </div>
-                <!-- END COL -->
+                <hr class="p-2">
+                <a href="#" class="card-link">Edit assignment</a>
               </div>
             </div>
-            <!-- END ROW -->
+
+          </div>
+          <!-- /.container-fluid -->>
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Your Website 2020</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+
+      </div>
+      <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- ROW END -->
-  </div>
-  <!-- /.container-fluid -->>
 
-  </div>
-  <!-- End of Main Content -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright &copy; Your Website 2020</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  </div>
-  <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 
