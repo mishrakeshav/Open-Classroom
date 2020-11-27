@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'users',
     'openforms',
     'comments',
+    'whiteboard',
+    'assignments',
     'crispy_forms',
     'widget_tweaks',
 ]

@@ -51,14 +51,16 @@
                         <img src="{{ ass.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle mr-2 mb-2 float-left">
                         <p class="card-text">{{ ass.user.username }}</p>
                         {% if ass.file_count >= 1 %}
-                            <img src="{{ ass.first_file_url }}" alt="" srcset="">
+                            <img class = "img-fluid" src="{{ ass.first_file_url }}" alt="" srcset="">
                         {% endif %}
-                        <a href="#" class="card-link">{{ ass.file_count }}</a>
-                        {% if ass.turned_in %}
-                            <a href="#" class="card-link text-success">Turned In</a>
-                        {% else %}
-                            <a href="#" class="card-link text-danger">Missing</a>
-                        {% endif %}
+                        <div class="mt-1">
+                            <a href="#" class="card-link">{{ ass.file_count }}</a>
+                            {% if ass.turned_in %}
+                                <a href="#" class="card-link text-success">Turned In</a>
+                            {% else %}
+                                <a href="#" class="card-link text-danger">Missing</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

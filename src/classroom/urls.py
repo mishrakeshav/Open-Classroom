@@ -19,5 +19,4 @@ urlpatterns = [
     path('todo/', views.todo, name = 'todo'),
     path('toreview/', views.toreview, name = 'todo'),
     path('<int:pk>/classwork/', views.classwork, name = 'classwork'),
-    path('whiteboard/', views.whiteboard, name = 'whiteboard'),
 ]

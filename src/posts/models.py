@@ -36,6 +36,7 @@ class Assignment(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     due_date = models.DateTimeField()
+    marks = models.IntegerField(default=100)
 
     def __str__(self):
         return self.title
@@ -74,6 +75,8 @@ class SubmittedAssignment(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete = models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     turned_in = models.BooleanField(default = False)
+    grade = models.IntegerField(default=0)
+    is_reviewed = models.BooleanField(default=False)
     
     @property
     def file_count(self):

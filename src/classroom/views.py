@@ -209,10 +209,7 @@ def todo(request):
     print(assignments)
     return render(request, 'classroom/todo.html', context)
 
-@login_required
-def whiteboard(request):
-    context = {}
-    return render(request, 'classroom/whiteboard.html', context)
+
 
 @login_required
 def classwork(request, pk):
@@ -242,4 +239,5 @@ def student_work(request, pk):
     assignment = get_object_or_404(Assignment, pk=pk)
     context = {'assignment': assignment}
     return render(request, 'classroom/student_work.html', context)
+
 
