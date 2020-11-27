@@ -11,7 +11,8 @@ from comments.forms import CommentCreateForm, PrivateCommentForm
 
 @login_required
 def home(requests):
-    classrooms = requests.user.classroom_set.all()
+    teaching_classes = set([classroom.classroom for classroom in requests.user.classroomteachers_set.all()])
+    classrooms = set(requests.user.classroom_set.all()).union(teaching_classes)
     classroom_form = ClassroomCreationForm()
     join_classroom_form = JoinClassroomForm()
     context = {
@@ -29,7 +30,7 @@ def create_classroom(request):
         if form.is_valid(): 
             name = form.cleaned_data.get('name')
             description = form.cleaned_data.get('description')
-            classroom = Classroom.objects.create(name=name, description=description, created_by=request.user)
+            classroom = Classroom(name=name, description=description, created_by=request.user)
             classroom.save()
             classroom.classroom_code = classroom.name[:4] + str(classroom.id)
             classroom.save()
@@ -224,5 +225,21 @@ def classwork(request, pk):
 
 @login_required
 def toreview(request):
-    context = {}
+    classrooms = request.user.classroomteachers_set.all()
+    classrooms = list(map(lambda x: x.classroom, classrooms))
+    topics = []
+    for classroom in classrooms:
+        topics.extend(classroom.topic_set.all())
+    assignments = []
+    for topic in topics:
+        assignments.extend(topic.assignment_set.all())
+ 
+    context = {'assignments':assignments}
     return render(request, 'classroom/toreview.html', context)
+
+
+def student_work(request, pk):
+    assignment = get_object_or_404(Assignment, pk=pk)
+    context = {'assignment': assignment}
+    return render(request, 'classroom/student_work.html', context)
+

@@ -28,6 +28,7 @@ class Post(models.Model):
     def post_comment(self):
         return list(self.comment_set.all())
 
+
 class Assignment(models.Model):
     title = models.CharField(max_length=250)
     description = models.TextField()
@@ -50,12 +51,38 @@ class Assignment(models.Model):
     @property
     def comments(self):
         return list(self.privatecomment_set.all())
+    
+    @property
+    def submitted_assignments(self):
+        return list(self.submittedassignment_set.all())
+    
+    @property
+    def total_turned_in(self):
+        ct = 0
+        for ass in self.submitted_assignments:
+            ct += 1 if ass.turned_in else 0
+        print(ct)
+        return ct
+
+    
+    @property
+    def total_missing(self):
+        print(self.topic.classroom.users.all())
+        return len(self.topic.classroom.users.all()) - self.total_turned_in
 
 class SubmittedAssignment(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete = models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     turned_in = models.BooleanField(default = False)
     
+    @property
+    def file_count(self):
+        return len(self.assignmentfile_set.all())
+    
+    @property
+    def first_file_url(self):
+        return self.assignmentfile_set.first().files.url
+
     def __str__(self):
         return f"{self.user.username} --> {self.assignment.title}"
 
