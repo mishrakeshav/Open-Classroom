@@ -20,6 +20,7 @@
                     <div class="row">
                         <a class="mr-auto btn btn-circle" href=""><img src="{% static 'mainapp/icons/star.svg' %}" alt=""></a>
                         <a class="btn" href="{{ course.link }}" target="_blank">Go to the course</a>
+                        <a class="btn" href="{% url 'courses:update_course' course.pk %}" target="_blank">Update course</a>
                     </div>
                 </div>
             </div>

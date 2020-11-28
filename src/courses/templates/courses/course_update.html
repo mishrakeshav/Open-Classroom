@@ -13,11 +13,15 @@
             <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Update Course !</h1>
             </div>
-            <form class="user" method='POST' enctype='multipart/form-data'>
-                {% csrf_token %}
-                {{ form | crispy }}
-                <button type='submit' class="btn btn-small btn-primary btn-user btn-block">Update Course</button>
-            </form>
+                <form class="user" method='POST' enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <button type='submit' class="btn btn-sm btn-primary">Update Course</button>
+                </form>
+                <form action="{% url 'courses:delete_course' course.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type='submit' class="mt-1 btn btn-sm btn-danger">Delete Course</button>
+                </form>
         </div>
     </div>
     <div class="col-lg-5 mt-5 p-lg-5 p-sm-3">

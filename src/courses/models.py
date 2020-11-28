@@ -6,9 +6,9 @@ from django.db import models
 class Course(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    link = models.CharField(max_length=200)
+    link = models.URLField(max_length=500)
     image = models.ImageField(default = 'courses/default.jpg', upload_to='courses/')
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
