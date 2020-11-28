@@ -17,11 +17,13 @@
                 <div class="card-body">
                     <h5 class="card-title text-dark font-weight-bold"><strong>{{ course.title }}</strong></h5>
                     <p class="card-text">{{ course.description }}</p>
-                    <div class="row">
+                    <div class="d-flex flex-row">
                         <a class="mr-auto btn btn-circle" href=""><img src="{% static 'mainapp/icons/star.svg' %}" alt=""></a>
                         <a class="btn" href="{{ course.link }}" target="_blank">Go to the course</a>
-                        <a class="btn" href="{% url 'courses:update_course' course.pk %}" target="_blank">Update course</a>
                     </div>
+                    {% if course.created_by == request.user %}
+                        <a class="btn btn-sm btn-danger float-right mt-1" href="{% url 'courses:update_course' course.pk %}" target="_blank">Update course</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
