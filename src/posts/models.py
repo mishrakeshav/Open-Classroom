@@ -69,7 +69,7 @@ class Assignment(models.Model):
     @property
     def total_missing(self):
         print(self.topic.classroom.users.all())
-        return len(self.topic.classroom.users.all()) - self.total_turned_in
+        return max(len(self.topic.classroom.users.all()) - self.total_turned_in, 0)
 
 class SubmittedAssignment(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete = models.CASCADE)
@@ -96,7 +96,7 @@ class AssignmentFile(models.Model):
 
     @property
     def filename(self):
-        return self.files.name[10:]
+        return os.path.split(self.files.name)[-1]
     
 
 
@@ -106,7 +106,7 @@ class Resource(models.Model):
 
     @property
     def filename(self):
-        return self.files.name[20:][:7]
+        return os.path.split(self.files.name)[-1]
 
 
 class Attachment(models.Model):
@@ -115,4 +115,4 @@ class Attachment(models.Model):
 
     @property
     def filename(self):
-        return self.files.name[20:][:7]
+        return os.path.split(self.files.name)[-1]

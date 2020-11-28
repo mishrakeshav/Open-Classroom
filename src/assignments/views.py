@@ -23,6 +23,7 @@ def grade(request,pk):
         grade_form = GradeStudentForm(request.POST)
         if grade_form.is_valid():
             grade = grade_form.cleaned_data.get('grade')
+            submit_assignment.is_reviewed = True
             submit_assignment.grade = grade 
             submit_assignment.save()
         else:

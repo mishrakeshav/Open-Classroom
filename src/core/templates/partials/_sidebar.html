@@ -43,6 +43,13 @@
       </a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'classroom:toreview' %}" >
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>To Review</span>
+      </a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -68,12 +75,7 @@
         <span>Create Assignment</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-      <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
-    </li>
+
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
@@ -87,6 +89,20 @@
       <a class="nav-link" href="{% url 'courses:course_list' %}">
         <i class="fas fa-fw fa-table"></i>
         <span>Courses</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'ide:ide' %}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>IDE</span></a>
+    </li>
+
+     <!-- Nav Item - Tables -->
+     <li class="nav-item">
+      <a class="nav-link" href="{% url 'ide:problems' %}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Problem Statements</span></a>
     </li>
 
     <!-- Divider -->
