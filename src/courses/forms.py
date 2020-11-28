@@ -6,3 +6,9 @@ class CourseCreationForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ['title', 'description', 'link', 'image']
+
+class CourseUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['title', 'description', 'link', 'image']
+
