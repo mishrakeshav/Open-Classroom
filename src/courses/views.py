@@ -11,7 +11,7 @@ def course_list(request):
 
 def create_course(request):
     if request.method == 'POST':
-        form = CourseCreationForm(request.POST)
+        form = CourseCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save() 
             return redirect('courses:course_list')

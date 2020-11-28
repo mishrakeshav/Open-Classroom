@@ -2,26 +2,27 @@
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 
-{% block title %} Profile {% endblock title %}
+{% block title %} Create Course {% endblock title %}
 
 {% block content %}
-<div class="card o-hidden border-0 shadow-lg my-1 m-lg-2">
-<div class="card-body p-0">
-    <!-- Nested Row within Card Body -->
-    <div class="row">
-        <div class="col-lg-7 mx-auto">
-            <div class="p-5">
-                <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add a New Course !</h1>
-                </div>
-                <form class="user" method='POST' enctype='multipart/form-data'>
-                    {% csrf_token %}
-                    {{ form | crispy }}
-                    <button type='submit' class="btn btn-small btn-primary btn-user btn-block">Add Course</button>
-                </form>
+
+
+<!-- Nested Row within Card Body -->
+<div class="row">
+    <div class="col-lg-7 mx-auto">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Add a New Course !</h1>
             </div>
+            <hr>
+            <form class="user" method='POST' enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type='submit' class="btn btn-small btn-primary btn-user btn-block">Add Course</button>
+            </form>
         </div>
     </div>
 </div>
-</div>
+
+
 {% endblock content %}

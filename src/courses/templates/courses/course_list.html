@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %} Home {% endblock title %}
+{% block title %} Courses {% endblock title %}
 
 {% block content %}
+<div class="d-flex justify-content-end">
+    <a href = "{% url 'courses:create_course' %}" class="btn btn-outline-dark"><img src = "{% static 'mainapp/icons/add.svg' %}" > Add a new course</a>
+</div>
+
 <div class="row">
     <!-- CARD -->
     {% for course in courses %}
@@ -11,11 +15,11 @@
             <div class="card shadow">
                 <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="">
                 <div class="card-body">
-                    <h5 class="card-title text-dark font-weight-bold">{{ course.title }}</h5>
+                    <h5 class="card-title text-dark font-weight-bold"><strong>{{ course.title }}</strong></h5>
                     <p class="card-text">{{ course.description }}</p>
                     <div class="row">
-                        <a class="btn btn-primary" href="{{ course.link }}" target="_blank">Go to the course</a>
-                    <a class="ml-auto btn btn-primary" href=""><i class="fa fa-star-o"></i></a>
+                        <a class="mr-auto btn btn-circle" href=""><img src="{% static 'mainapp/icons/star.svg' %}" alt=""></a>
+                        <a class="btn" href="{{ course.link }}" target="_blank">Go to the course</a>
                     </div>
                 </div>
             </div>
