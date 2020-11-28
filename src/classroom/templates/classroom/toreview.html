@@ -46,7 +46,9 @@
                </div>
             <hr>
             <div class="d-flex flex-row bd-highlight mb-3">
-                <a href = "#" >View Assignment</a>
+                <a class = "p-2" href = "{% url 'classroom:assignment_submit' assignment.pk %}" >View Assignment</a>
+                <a class = "p-2" href = "{% url 'classroom:student_work' assignment.pk %}" >View Submissions</a>
+                <a class = "p-2" href = "{% url 'assignments:view_grades' assignment.pk %}" >View Grades</a>
             </div>
           </div>
         </div>
