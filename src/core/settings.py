@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'courses',
     'whiteboard',
     'assignments',
+    'ide',
     'crispy_forms',
     'widget_tweaks',
 ]

@@ -34,6 +34,7 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     path('whiteboard/', include('whiteboard.urls')),
     path('assignments/', include('assignments.urls')),
+    path('ide/', include('ide.urls')),
     path('password-reset/', 
     auth_views.PasswordResetView.as_view(
         template_name = 'users/password_reset.html'),
