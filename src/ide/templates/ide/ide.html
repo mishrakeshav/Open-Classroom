@@ -8,14 +8,14 @@
 {% block content %}
 <nav class="navbar navbar-light bg-light">
     <div class="navbar-brand">
-        <a href=""><i class="fas fa-times"></i></a>
+        <a href="{% url 'classroom:home' %}"><i class="fas fa-times"></i></a>
         <div class="pl-3 float-right"> <strong>IDE</strong></div>
     </div>
 
 </nav>
 
 <div class="container-fluid">
-    <div data-id="1" class="sec-widget"  data-theme="dark" data-widget="9e1e25c224b32a941cccc468d284e148"></div>
+    <div data-id="1" class="sec-widget" data-theme="dark" data-widget="9e1e25c224b32a941cccc468d284e148"></div>
     <script>SEC_HTTPS = true;
         SEC_BASE = "compilers.widgets.sphere-engine.com"; 
         (function(d, s, id){ SEC = window.SEC || (window.SEC = []);
