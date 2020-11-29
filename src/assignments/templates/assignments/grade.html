@@ -10,7 +10,7 @@
         <a href="{% url 'assignments:view_grades' submit_assignment.assignment.pk %}"><i class="fas fa-times"></i></a>
         <div class="pl-3 float-right">Grade <strong>{{ submit_assignment.user.username }}</strong> for <strong>{{ submit_assignment.assignment.title }}</strong></div>
     </div>
-    <form class="form-inline">
+    <!-- <form class="form-inline">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <button type="button" class="btn btn-primary">Return</button>
             
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> -->
 </nav>
 
 <div class="container-fluid">
@@ -50,7 +50,14 @@
             <!-- For -->
             <hr class='d-lg-none d-sm-block'>
             <h5><strong>Grade {{ submit_assignment.user.first_name }} {{submit_assignment.user.last_name}}</strong></h5>
-            <form action="" method="POST">
+            <h5><strong>Grade : 
+                {% if submit_assignment.is_reviewed %}
+                    {{ submit_assignment.grade }}
+                {% else %}
+                    Not graded
+                {% endif %}
+            </strong></h5>
+                <form action="" method="POST">
                 {% csrf_token %}
                 {{ grade_form|crispy }}
                 <button class="btn btn-primary float-right">Grade</button>

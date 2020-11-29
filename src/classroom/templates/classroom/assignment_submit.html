@@ -24,11 +24,30 @@
       </div>
       <p class="text-muted">{{ assignment.created_by.username }} {{ assignment.created_at }}</p>
       <div class="row">
-        <p class="text-dark font-weight-bold">20 points</p>
-        <p class="ml-auto text-dark font-weight-bold">Due Nov 10, 11:59pm</p>
+        <p class="text-dark font-weight-bold">{{ assignment.marks }} points</p>
+        <p class="ml-auto text-dark font-weight-bold">Due {{ assignment.due_date }}</p>
       </div>
       <hr>
       <p>{{ assignment.description }}</p>
+      <div class="row">
+        {% for resource in assignment.resources %}
+        <div class="col-6">
+            <div class="card mb-3 ml-2">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                    <img src="{{ resource.files.url  }}" class="card-img img-fluid d-none d-lg-block" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title "><a target="_blank" href="{{ resource.files.url  }}">{{ resource.filename }}...</a>
+                        </h5>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     </div>
 
     <!-- The Submit cards -->
@@ -39,11 +58,11 @@
               {% if submitted_assignment %}
                 {% if submitted_assignment.turned_in %}
                 <p class="ml-auto text-success">
-                    Assigned
+                    Turned In
                 </p>
                 {% else %}
                 <p class="ml-auto text-success">
-                    Turn in
+                    Assigned
                 </p>
                 {% endif %}
               {% else %}
