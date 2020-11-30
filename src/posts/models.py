@@ -58,13 +58,18 @@ class Assignment(models.Model):
         return list(self.submittedassignment_set.all())
     
     @property
+    def is_reviewed(self, user):
+        for assignment in self.submitted_assignments.filter(user=user):
+            if assignment.is_reviewed: return True
+        return False
+
+    @property
     def total_turned_in(self):
         ct = 0
         for ass in self.submitted_assignments:
             ct += 1 if ass.turned_in else 0
         print(ct)
         return ct
-
     
     @property
     def total_missing(self):

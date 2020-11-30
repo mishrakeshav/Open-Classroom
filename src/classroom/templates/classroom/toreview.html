@@ -32,6 +32,7 @@
           <div id="collapse{{ assignment.pk }}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                <small>Posted on {{ assignment.created_at }}</small>
+               <p>{{ assignment.description }}</p>
                <div class = "d-flex flex-row-reverse">
                     <div class="p-2 border-left border-secondary">
                         <h1 class="text-dark">{{ assignment.total_turned_in  }}</h1>
