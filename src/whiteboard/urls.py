@@ -5,4 +5,5 @@ app_name = 'whiteboard'
 
 urlpatterns = [
     path('', views.whiteboard, name='whiteboard'),
+    path('liveboard/', views.liveboard, name='liveboard'),
 ]
