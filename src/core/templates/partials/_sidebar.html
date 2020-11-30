@@ -24,7 +24,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-      Interface
+      Options
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -50,12 +50,18 @@
       </a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'classroom:assignment_create' %}">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Create Assignment</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-      Addons
+      Features
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -69,11 +75,7 @@
     {% endif %}
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'classroom:assignment_create' %}">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Create Assignment</span></a>
-    </li>
+    
 
 
 
@@ -82,6 +84,12 @@
       <a class="nav-link" href="{% url 'whiteboard:whiteboard' %}">
         <i class="fas fa-fw fa-table"></i>
         <span>Whiteboard</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'whiteboard:live' %}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Liveboard</span></a>
     </li>
 
     <!-- Nav Item - Tables -->

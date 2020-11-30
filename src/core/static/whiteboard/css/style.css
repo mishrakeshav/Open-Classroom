@@ -8,7 +8,7 @@ body {
     margin: 1em;
     color: #fff;
     background: url(../images/grid-pattern.png) left top repeat, 
-    			-webkit-radial-gradient(50% 15%, #2c98dd, #1a5f96) no-repeat;
+    			-webkit-radial-gradient(50% 15%, #f7f8f8, #1a5f96) no-repeat;
     background: url(../images/grid-pattern.png) left top repeat, 
     			-moz-radial-gradient(50% 15%, #2c98dd, #1a5f96) no-repeat;
     background: url(../images/grid-pattern.png) left top repeat, 
@@ -119,6 +119,7 @@ label[for=color03] {background: navy;}
 label[for=color04] {background: yellowgreen;}
 label[for=color05] {background: firebrick;}
 label[for=color06] {background: powderblue;}
+label[for=color07] {background: black;}
 
 footer {
 	margin-top: 1.5em;

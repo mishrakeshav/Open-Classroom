@@ -7,6 +7,6 @@ def whiteboard(request):
     return render(request, 'whiteboard/whiteboard.html', context)
 
 @login_required
-def liveboard(request):
+def live(request):
     context = {}
     return render(request, 'whiteboard/liveboard.html', context)
