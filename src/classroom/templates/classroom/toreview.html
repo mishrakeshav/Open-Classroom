@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} To Review {% endblock title %}
+
+{% block content %}
+<!-- <div class="ml-lg-5 mr-lg-5">
+    <div class="d-flex flex-row bd-highlight mb-3">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+    </div>
+</div> -->
+<div class = "ml-lg-5 mr-lg-5">
+    <div class="accordion" id="accordionExample">
+      {% for assignment in assignments %}
+        <!-- CARD -->
+        <div class="card mb-2">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{ assignment.pk }}" aria-expanded="true" aria-controls="collapseOne">
+                {{ assignment.title }}
+              </button>
+            </h2>
+          </div>
+          <div id="collapse{{ assignment.pk }}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+               <small>Posted on {{ assignment.created_at }}</small>
+               <p>{{ assignment.description }}</p>
+               <div class = "d-flex flex-row-reverse">
+                    <div class="p-2 border-left border-secondary">
+                        <h1 class="text-dark">{{ assignment.total_turned_in  }}</h1>
+                        <br>
+                        <p>Turned in</p>
+                    </div>
+                    <div class="p-2 border-left border-secondary">
+                        <h1 class="text-dark">{{ assignment.total_missing }}</h1>
+                        <br>
+                        <p>Missing</p>
+                    </div>
+               </div>
+            <hr>
+            <div class="d-flex flex-row bd-highlight mb-3">
+                <a class = "p-2" href = "{% url 'classroom:assignment_submit' assignment.pk %}" >View Assignment</a>
+                <a class = "p-2" href = "{% url 'classroom:student_work' assignment.pk %}" >View Submissions</a>
+                <a class = "p-2" href = "{% url 'assignments:view_grades' assignment.pk %}" >View Grades</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END CARD -->
+      {% endfor %}
+</div>
+
+
+{% endblock %}

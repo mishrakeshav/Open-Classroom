@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Classrooms</h1>
+<!-- ROW  -->
+<div class="row">
+    <!-- COL -->
+    {% for classroom in classrooms %}
+    <div class="col-lg-3 col-md-4 col-sm-1">
+        <!-- CARD -->
+        <div class="card border-bottom-primary shadow mb-4">
+            <div class="card-header py-3">
+                <a href="{% url 'classroom:open_classroom' classroom.id %}">
+                    <h6 class="m-0 font-weight-bold text-primary">{{ classroom.name }}</h6>
+                </a>
+            </div>
+            <a href="#!">
+                <div class="card-body">
+                    <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" alt="">
+                    </div>
+                    <p class="text-secondary">{{ classroom.description }}</p>
+                </div>
+            </a>
+        </div>
+        <!-- END CARD -->
+    </div>
+    <!-- END COL -->
+    {% endfor %}
+</div>
+<!-- END ROW -->
+
+<!-- Modal Create Class -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Create Class</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form action="{% url 'classroom:create_classroom' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInput">Class Name</label>
+                        {{ classroom_form.name|attr:'class: form-control'|attr:'placeholder:Enter Classname' }}
+                    </div>
+                    <div class="form-group">
+                        <label for="exam">Description</label>
+                        {{ classroom_form.description|attr:'class: form-control'|attr:'placeholder:Enter Description' }}
+                    </div>
+                </div>
+            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create Classroom</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Join Class -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Join Class</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'classroom:join_classroom' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                        <div class="form-group">
+                        <label for="exampleInput">{{ join_classroom_form.code.label }}</label>
+                        {{ join_classroom_form.code|attr:'class: form-control'|attr:'placeholder:Enter Class Code' }}
+                        <small id="Help" class="form-text text-muted">Ask your teacher for the class code, then enter it here.</small>
+                        </div>
+                    <ul><h5>To sign in with a class code</h5>
+                        <li>Use an authorized account</li>
+                        <li>Use a class code with 5-7 letters or numbers, and no spaces or symbols</li>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Join Classroom</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

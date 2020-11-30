@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>{{ assignment.title }}</h3>
+        </div>
+        <div class="col-lg-12">
+        <ul class="navbar-nav">
+            <div class="row">
+                <li class="nav-item ml-2">
+                    <h1>{{ assignment.total_turned_in }}</h1>
+                    <small class='text-success'>Turned in</small>
+                </li>
+                <li class="nav-item ml-4">
+                    <h1>{{ assignment.total_missing }}</h1>
+                    <small class='text-danger'>Missing</small>
+                </li>
+            </div>
+        </ul>
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="row">
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Assigned
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Turned in</a>
+                <a class="dropdown-item" href="#">Graded</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Cards -->
+
+    <div class="row">
+        {% for ass in assignment.submitted_assignments %}
+            <div class="col-lg-3 m-2 ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <img src="{{ ass.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle mr-2 mb-2 float-left">
+                            <p class="pt-2">{{ ass.user.username }}</p>
+                            
+                            <a class="btn btn-circle ml-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'assignments:grade' assignment.pk %}">Grade Student</a>
+                            </div>
+                        </div>
+                        
+                        {% if ass.file_count >= 1 %}
+                            <img class = "img-fluid" src="{{ ass.first_file_url }}" alt="" srcset="">
+                        {% endif %}
+                        <div class="mt-1">
+                            <a href="#" class="card-link">{{ ass.file_count }}</a>
+                            {% if ass.turned_in %}
+                                <a href="#" class="card-link text-success">Turned In</a>
+                            {% else %}
+                                <a href="#" class="card-link text-danger">Missing</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

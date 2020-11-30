@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} Home {% endblock title %}
+
+
+{% block content %}
+<!-- ROW -->
+<div class="row">
+    <div class="col-12 ">
+        <div class="card bg-dark shadow p-3 mb-3 bg-white rounded">
+        <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" height="175" class="card-img" alt="...">
+        <div class="card-img-overlay">
+            <h1 class="card-title"><b>{{ classroom.name }}</b></h1>
+            <p class="card-text">{{ classroom.description }}</p>
+            <input type="text"  value="{{ classroom.classroom_code }}" id="classroom-code">
+            <button class = "btn btn-sm btn-outline-primary" onclick="copyCode()">Copy</button>
+        </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row">
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="card border">
+            <div class="card-body">
+                <h5>Upcoming</h5>
+                <p class="card-text">Woohoo, no work due soon!</p>
+                <a class="float-right" href="{% url 'classroom:todo' %}">View all</a>
+            </div>
+            </div>
+        </div>
+            <div class="col-lg-9">
+                <!-- ROW -->
+                <div class="row">
+
+                    <div class="col-12 mb-2">
+                        <div id = "clicked-post" class="card shadow-sm">
+                            <div class="card-body">
+                                <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" width="30" height="30" alt="..." class="rounded-circle mr-2 text-none">
+                                <a  class = "text-decoration-none" href="#!">Share something with your class</a>
+                            </div>
+                        </div>
+                        <!-- TEXT AREA -->
+                        <div id = "post-textarea" class="card shadow-sm d-none">
+                            <div class="card-body">
+                                <form action="{% url 'posts:create_post' classroom.pk %}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ post_form.title|attr:"class:form-control"|attr:"placeholder:Title"}}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ post_form.description|attr:"class:form-control"|attr:"placeholder:Description" }}
+                                    </div>
+                                    <div class="float-left">
+                                        {{ post_form.file_field|attr:"class:form-control btn btn-circle" }}
+                                    </div>
+                                    <button type = "submit" class="btn btn-sm btn-primary m-1 pl-3 pr-3 float-right">
+                                        Post
+                                    </button>
+                                    <button id = "cancel-post" class="btn btn-sm btn-outline-dark m-1 float-right">
+                                        Cancel
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END TEXT AREA -->
+                        </div>
+                        <!-- END COL -->
+                        <!-- COL -->
+                        {% for content in contents %}
+                        <div class="col-12">
+                            <!-- CARD -->
+                            <div class="card shadow-sm mt-3">
+                                <div class="card-body">
+                                    <img src="{% static 'mainapp/img/undraw_posting_photo.svg' %}" width="35" height="35" alt="..." class="rounded-circle mr-2 mb-2 float-left">
+                                    <div class="dropdown no-arrow float-right">
+                                    <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                    </div>
+                                    <!-- Container -->
+                                    <div class="container">
+                                        {% if content.content_type == 'post' %}
+                                            <h4 class="text-primary">{{ content.title }}</h4>
+                                        {% else %}
+                                            <a href="{% url 'classroom:assignment_submit' content.pk %}"><h4 class="text-primary">{{ content.title }}</h4></a>
+                                        {% endif %}
+                                        <h6>Posted on {{ content.created_at }} By {{ content.created_by.username }}</h6>
+                                    </div>
+                                    <!-- End Container -->
+                                    <!-- CARD -->
+
+                                    <div class="row">
+                                        {% for resource in content.resources %}
+                                        <div class="col-6">
+                                            <div class="card mb-3 ml-2">
+                                                <div class="row no-gutters">
+                                                    <div class="col-md-4">
+                                                    <img src="{{ resource.files.url  }}" class="card-img img-fluid d-none d-lg-block" alt="...">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title "><a target="_blank" href="{{ resource.files.url  }}">{{ resource.filename }}...</a>
+                                                        </h5>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                {% if content.content_type == 'post' %}
+                                    <hr>
+                                    <div class="card-body">
+                                        {% for comment in content.post_comment %}
+                                            <div class="d-flex flex-row">
+                                                <img src="{{ comment.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle mr-2">
+                                                <p class='ml-2'><strong>{{ comment.user }}</strong>: {{ comment.comment_text}}</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <hr>
+                                    <div class="card-body">
+                                        <form  action="{% url 'comments:create_comment' content.pk %}" method="post">
+                                            <div class="input-group">
+                                            <img src="{{ request.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                                {% csrf_token %}
+                                                {{ comment_form.comment_text|attr:"class:form-control rounded-pill"|attr:"placeholder:Add a class comment" }}
+                                                <div class="input-group-append">
+                                                    <button class=" btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- END CARD -->
+                        </div>
+                        {% endfor %}
+                        <!-- END COL -->
+                    </div>
+                </div>
+                <!-- END ROW -->
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- ROW END -->
+
+{% endblock content %}

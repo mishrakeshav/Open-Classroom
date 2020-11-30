@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% block title %} Course | Update {% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="d-flex justify-content-center">
+            <img src="{{ course.image.url }}" class="img-fluid" alt="...">
+        </div>
+        <div class="p-3">
+            <form class="user" method='POST' enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type='submit' class="btn btn-sm btn-primary float-left mb-3">Update Course</button>
+            </form>
+            <form action="{% url 'courses:delete_course' course.pk %}" method="POST">
+                {% csrf_token %}
+                <button type='submit' class="btn btn-sm btn-danger float-right mb-3">Delete Course</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+        
+
+{% endblock content %}

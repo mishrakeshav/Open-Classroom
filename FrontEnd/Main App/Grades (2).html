@@ -9,14 +9,17 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>SB Admin 2 - Tables</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -95,12 +98,12 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="login.html">Login</a>
@@ -109,7 +112,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item active" href="blank.html">Blank Page</a>
+            <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
       </li>
@@ -122,7 +125,7 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
@@ -149,9 +152,11 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+          <form class="form-inline">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+          </form>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -329,61 +334,69 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid mt-5">
-          <div class="row m-2">
+        <div class="container-fluid">
+
+          <div class="card  bg-white border-0">
             
-          <div class="col-lg-8">
-            <div class="row">
-              <h3 class="text-primary">Assignment No. 5: Module3 Interpersonal Skills</h3>
-              <div class="dropdown no-arrow ml-auto">
-                <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                  <div class="dropdown-header">Dropdown Header:</div>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>
+					  	        <p>Out Of</p>
+						          <a class="btn btn-circle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							          <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+						        </a>			
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    </div>
+					</th>
+				  </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Name</th>
+                      <th>Out Of</th>
+				  </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <td>Tiger Nixon</td>
+                      <td>61</td>
+                    </tr>
+                    <tr>
+                      <td>Henry Ford</td>
+                      <td>63</td>
+                    </tr>
+					<tr>
+                      <td>Keshobh Mishra</td>
+                      <td>45</td>
+                    </tr>
+					<tr>
+                      <td>Hardik M</td>
+                      <td>19</td>
+                    </tr>
+					<tr>
+                      <td>Joy Depp</td>
+                      <td>100</td>
+                    </tr>
+					<tr>
+                      <td>Aneesh M</td>
+                      <td>75</td>
+                    </tr>
+					<tr>
+                      <td>Albort Eoinstin</td>
+                      <td>36</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <p class="text-muted">VRUSHALI DEOLE Nov 5</p>
-            <div class="row">
-              <p class="text-dark font-weight-bold">20 points</p>
-              <p class="ml-auto text-dark font-weight-bold">Due Nov 10, 11:59pm</p>
-            </div>
-            <hr>
-            <p>Solve the Assignement quiz with the link enabled and submit the
-            same time</p>
           </div>
 
-          <!-- The Submit cards -->
-          <div class="col-lg-4">
-            <div class="card p-4 m-3 shadow">
-              <div class="row">
-                <h4 class="text-primary">Your Work</h4>
-                <p class="ml-auto text-success">Assigned</p>
-              </div>
-              <button class="btn btn-outline-dark btn-block">
-                <i class="fa fa-plus" aria-hidden="true"></i> Add or create
-              </button>
-              <button class="btn btn-primary btn-block">Mark as done</button>
-            </div>
-
-            <div class="card p-1 m-3 shadow">
-              <div class="input-group mb-3 mt-3">
-                <img src="img/image1.jpg" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
-                </div>
-              </div>
-
-          </div>
-          </div>
-
-          <!-- The main content ofthe assignment -->
         </div>
         <!-- /.container-fluid -->
 
@@ -439,6 +452,13 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

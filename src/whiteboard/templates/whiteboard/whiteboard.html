@@ -1,0 +1,38 @@
+{% extends 'assignment_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} Assignment-Create {% endblock title %}
+
+
+{% block content %}
+<nav class="navbar navbar-light bg-light">
+    <div class="navbar-brand">
+        <a href="{% url 'classroom:home' %}"><i class="fas fa-times"></i></a>
+        <div class="pl-3 float-right"><strong>Whiteboard</strong> </div>
+    </div>
+    <form class="form-inline">
+        <button id = "clear_complete" type="button" class="btn btn-outline-primary">Clear</button>
+        <input id="size" class = "form-control m-2" placeholder="Enter pen size" />
+        <button id="choosePurpleSimpleColors"  class = "btn btn-info btn-circle" type="button"></button>
+        <button id="chooseGreenSimpleColors" class = "btn btn-success btn-circle" type="button"></button>
+        <button id="chooseYellowSimpleColors" class="btn btn-warning btn-circle" type="button"></button>
+        <button id="chooseBrownSimpleColors" class = "btn btn-circle" style="background-color: #290001;" type="button"></button>
+        <button id="chooseRedSimpleColors" class="btn btn-danger btn-circle" type="button"></button>
+        <button id="chooseBlueSimpleColors" class = "btn btn-primary btn-circle" type="button"></button>
+        <button id="chooseBlackSimpleColors" class="btn btn-dark btn-circle" type="button">  </button>
+        <button id="chooseWhiteSimpleColors" class="btn btn-circle btn-outline-secondary" type="button"><i class="fas fa-eraser"></i></button>
+    </form>
+</nav>
+
+<div class="container-fluid">
+    
+    <div id="canvas_div">
+        <canvas id="white_board" class="img-fluid" height="1200" width="1300" style="border: 1px solid "></canvas>
+    </div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="{% static 'whiteboard/whiteboard.js' %}"></script>
+
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

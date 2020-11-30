@@ -1,0 +1,37 @@
+{% extends 'user_base.html' %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% block title %} Register {% endblock title %}
+
+{% block content %}
+<div class="card o-hidden border-0 shadow-lg my-5">
+<div class="card-body p-0">
+    <!-- Nested Row within Card Body -->
+    <div class="row">
+    <div class="col-lg-5 d-none d-lg-block bg-register-image" style="background-image: url(https://images.unsplash.com/photo-1567168544646-208fa5d408fb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80);"></div>
+    <div class="col-lg-7">
+        <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+        </div>
+        <form class="user" method='POST'>
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button class="btn btn-primary btn-user btn-block">Register</button>
+            
+        </form>
+        <hr>
+        <div class="text-center">
+            <a class="small" href="{% url 'password_reset' %}">Forgot Password?</a>
+        </div>
+        <div class="text-center">
+            <a class="small" href="{% url 'users:login' %}">Already have an account? Login!</a>
+        </div>
+        </div> 
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

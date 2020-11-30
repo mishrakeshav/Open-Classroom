@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+<div class="container">
+    <ul class="navbar-nav" id="accordionExample">
+        <li class="nav-item">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Classes
+                </button>
+                <!-- <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">All Classes</a>
+                    <div class="collapse-divider"><hr></div>
+                    <a class="dropdown-item" href="#">BCE</a>
+                </div> -->
+        </li>
+        <li class="nav-item mt-4">
+            <h5 class="mb-0">
+                <a class="nav-link toggle" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapsePages">
+                    <div class="row ">
+                        <p class="text-dark ml-4">Due</p>
+                        <p class="ml-auto text-dark">{{ assignments|length }}</p>
+                    </div>
+                </a>
+            </h5>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                {% for assignment in assignments %}
+                <a href="{% url 'classroom:assignment_submit' assignment.pk %}" class="card bg-transparent border-light p-1 text-decoration-none">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                    <h4 class="text-primary font-weight-bold">{{ assignment.title }}</h4>
+                            </div>
+                            <div class="col-lg-12">
+                                <p class="text-dark float-left">{{ assignment.topic.classroom.name }}</p>
+                                <p class="text-dark font-weight-bold float-right">Posted {{ assignment.created_at }} <br> Due on {{ assignment.due_date }}</p>
+                            </div>
+                                     
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                {% endfor %}
+                
+            </div>
+        </li>        
+    </ul>
+</div>
+
+{% endblock content %}

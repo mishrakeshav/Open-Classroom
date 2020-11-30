@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+<div class="row m-2">
+    <div class="col-lg-8">
+      <div class="row">
+        <h3 class="text-primary">{{ assignment.title }}</h3>
+        <div class="dropdown no-arrow ml-auto">
+          <a class="btn btn-circle dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-header">Dropdown Header:</div>
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+      <p class="text-muted">{{ assignment.created_by.username }} {{ assignment.created_at }}</p>
+      <div class="row">
+        <p class="text-dark font-weight-bold">{{ assignment.marks }} points</p>
+        <p class="ml-auto text-dark font-weight-bold">Due {{ assignment.due_date }}</p>
+      </div>
+      <hr>
+      <p>{{ assignment.description }}</p>
+      <div class="row">
+        {% for resource in assignment.resources %}
+        <div class="col-6">
+            <div class="card mb-3 ml-2">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                    <img src="{{ resource.files.url  }}" class="card-img img-fluid d-none d-lg-block" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title "><a target="_blank" href="{{ resource.files.url  }}">{{ resource.filename }}...</a>
+                        </h5>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+    <!-- The Submit cards -->
+    <div class="col-lg-4">
+      <div class="card p-4 m-3 shadow">
+        
+        <div class="row">
+          <h4 class="text-primary">Your Work</h4>
+              {% if submitted_assignment %}
+
+                {% if submitted_assignment.turned_in %}
+                <p class="ml-auto text-success">
+                    Turned In
+                </p>  
+                      
+                {% else %}
+                <p class="ml-auto text-success">
+                    Assigned
+                </p>
+                {% endif %}
+              {% else %}
+                <p class="ml-auto text-success">
+                    Assigned
+                </p>
+              {% endif %}
+
+        </div>
+        {% if submitted_assignment and submitted_assignment.is_reviewed %}
+            <div >
+
+              <p class="ml-auto text-secondary">
+                Graded : 
+                {{ submitted_assignment.grade }}
+              </p>
+            </div>
+        {% endif %}
+        {% if submitted_assignment %}
+            {% if assignment_files %}
+                <p>Submitted files</p>
+                {% for file in assignment_files %}
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="{{ file.files.url }}">{{ file.filename }}</a>
+                        <form action="{% url 'classroom:unsubmit_file' file.pk %}" method="post">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-circle">X</button>
+                        </form>
+                    </li>
+                  </ul>
+                {% endfor %}
+            {% endif %}
+            {% if not submitted_assignment.turned_in %}
+                <form action="{% url 'classroom:assignment_submit' assignment.pk %}" method="post" enctype='multipart/form-data'>
+                  {% csrf_token %}
+                  {{ form | crispy }}
+                  <button type="submit" class="btn btn-outline-dark btn-block m-1">
+                      <i class="fa fa-plus" aria-hidden="true"></i> Add or create
+                  </button>
+                </form>
+                <form action="{% url 'classroom:turnin' assignment.pk %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary btn-block m-1">Mark as done</button>
+                </form>
+            {% else %}
+                <form action="{% url 'classroom:unsubmit' assignment.pk %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-dark btn-block m-1">Unsubmit</button>
+                </form>
+            {% endif %}
+        {% else %}
+            <form action="{% url 'classroom:assignment_submit' assignment.pk %}" method="post"  enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type="submit" class="btn btn-outline-dark btn-block m-1">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add or create
+                </button>
+            </form>
+            <form action="{% url 'classroom:turnin' assignment.pk %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary btn-block m-1">Mark as done</button>
+            </form>
+        {% endif %}
+
+      </div>
+
+      <div class="card p-1 m-lg-3 m-md-1 shadow">
+        <div class="mb-1 mt-3 ml-3 mr-1">
+          {% for comment in assignment.comments %}
+            {% if is_teacher or comment.user == request.user  %}
+            <div class="d-flex flex-row">
+                  <img src="{{ comment.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle mr-2">
+                  <p class='ml-3'><strong>{{ comment.user }}</strong>: {{ comment.comment_text}}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      <div class="card-body">
+          <form  action="{% url 'comments:private_comment' assignment.pk %}" method="post">
+              <div class="input-group">
+                <img src="{{ request.user.profile.image.url }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                  {% csrf_token %}
+                  {{ private_comment_form.comment_text|attr:"class:form-control rounded-pill"|attr:"placeholder:Add a private comment" }}
+                  <div class="input-group-append">
+                      <button class=" btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                  </div>
+              </div>
+          </form>
+      </div>
+      </div>
+</div>
+{% endblock content %}

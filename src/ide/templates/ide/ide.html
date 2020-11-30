@@ -1,0 +1,31 @@
+{% extends 'assignment_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block title %} IDE {% endblock title %}
+
+
+{% block content %}
+<nav class="navbar navbar-light bg-light">
+    <div class="navbar-brand">
+        <a href="{% url 'classroom:home' %}"><i class="fas fa-times"></i></a>
+        <div class="pl-3 float-right"> <strong>IDE</strong></div>
+    </div>
+
+</nav>
+
+<div class="container-fluid">
+    <div data-id="1" class="sec-widget" data-theme="dark" data-widget="9e1e25c224b32a941cccc468d284e148"></div>
+    <script>SEC_HTTPS = true;
+        SEC_BASE = "compilers.widgets.sphere-engine.com"; 
+        (function(d, s, id){ SEC = window.SEC || (window.SEC = []);
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; 
+            js.src = (SEC_HTTPS ? "https" : "http") + "://" + SEC_BASE + "/static/sdk/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);   
+        }(document, "script", "sphere-engine-compilers-jssdk"));
+    </script>
+
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

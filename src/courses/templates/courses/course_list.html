@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Courses {% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-end">
+    <a href = "{% url 'courses:create_course' %}" class="btn btn-outline-dark"><img src = "{% static 'mainapp/icons/add.svg' %}" > Add a new course</a>
+</div>
+
+<div class="row">
+    <!-- CARD -->
+    {% for course in courses %}
+        <div class="col-3">
+            <div class="card shadow">
+                <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="">
+                <div class="card-body">
+                    <h5 class="card-title text-dark font-weight-bold"><strong>{{ course.title }}</strong></h5>
+                    <p class="card-text">{{ course.description }}</p>
+                    <div class="d-flex flex-row">
+                        <a class="mr-auto btn btn-circle" href=""><img src="{% static 'mainapp/icons/star.svg' %}" alt=""></a>
+                        <a class="btn" href="{{ course.link }}" target="_blank">Go to the course</a>
+                    </div>
+                    {% if course.created_by == request.user %}
+                        <a class="btn btn-sm btn-danger float-right mt-1" href="{% url 'courses:update_course' course.pk %}" target="_blank">Update course</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    <!-- END CARD -->
+    {% endfor %}
+</div>
+{% endblock content %}

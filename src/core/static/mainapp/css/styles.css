@@ -1,3 +1,29 @@
 .text-none {
     text-decoration: none;
 }
+
+.vl {
+    border-left: 1px solid rgb(184, 182, 182);
+    height: 800px;
+}
+
+@media only screen and (max-width: 992px) {
+    .v{
+        height: auto;
+        border-left: 0px;
+    }
+}
+.choose::-webkit-file-upload-button {
+    color: white;
+    display: inline-block;
+    background: #1014f3;
+    border: none;
+    padding: 7px 15px;
+    font-weight: 700;
+    border-radius: 3px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 10pt;
+}
+
+
