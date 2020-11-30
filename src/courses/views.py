@@ -34,7 +34,7 @@ def create_course(request):
 def update_course(request, pk):
     course = get_object_or_404(Course, pk=pk)
     if request.method=='POST':
-        form = CourseUpdateForm(data=request.POST, instance=course)
+        form = CourseUpdateForm(request.POST,request.FILES,instance=course)
         if form.is_valid():
             form.save()
             messages.success(request, 'Course Updated Successfully')

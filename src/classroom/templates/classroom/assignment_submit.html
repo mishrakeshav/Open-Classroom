@@ -53,13 +53,16 @@
     <!-- The Submit cards -->
     <div class="col-lg-4">
       <div class="card p-4 m-3 shadow">
+        
         <div class="row">
           <h4 class="text-primary">Your Work</h4>
               {% if submitted_assignment %}
+
                 {% if submitted_assignment.turned_in %}
                 <p class="ml-auto text-success">
                     Turned In
-                </p>
+                </p>  
+                      
                 {% else %}
                 <p class="ml-auto text-success">
                     Assigned
@@ -72,7 +75,15 @@
               {% endif %}
 
         </div>
+        {% if submitted_assignment and submitted_assignment.is_reviewed %}
+            <div >
 
+              <p class="ml-auto text-secondary">
+                Graded : 
+                {{ submitted_assignment.grade }}
+              </p>
+            </div>
+        {% endif %}
         {% if submitted_assignment %}
             {% if assignment_files %}
                 <p>Submitted files</p>

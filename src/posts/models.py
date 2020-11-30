@@ -41,6 +41,12 @@ class Assignment(models.Model):
     def __str__(self):
         return self.title
 
+    def is_turnedin(self, user):
+        for assignment in self.submittedassignment_set.all().filter(user=user):
+            if assignment.turned_in: return True
+        return False
+    
+
     @property
     def resources(self):
         return self.attachment_set.all()
@@ -57,17 +63,12 @@ class Assignment(models.Model):
     def submitted_assignments(self):
         return list(self.submittedassignment_set.all())
     
-    @property
-    def is_reviewed(self, user):
-        for assignment in self.submitted_assignments.filter(user=user):
-            if assignment.is_reviewed: return True
-        return False
 
     @property
     def total_turned_in(self):
         ct = 0
-        for ass in self.submitted_assignments:
-            ct += 1 if ass.turned_in else 0
+        for assignment in self.submitted_assignments:
+            ct += 1 if assignment.turned_in else 0
         print(ct)
         return ct
     

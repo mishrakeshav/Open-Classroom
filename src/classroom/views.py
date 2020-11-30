@@ -205,20 +205,16 @@ def todo(request):
     assignments = []
     for topic in topics:
         assignments.extend(list(topic.assignment_set.all()))
-    context = {'assignments':assignments}
-    print(assignments)
+    filtered_assignment = []
+    for assignment in assignments:
+        if not assignment.is_turnedin(request.user):
+            filtered_assignment.append(assignment)
+    context = {'assignments':filtered_assignment}
+    
     return render(request, 'classroom/todo.html', context)
 
 
 
-@login_required
-def classwork(request, pk):
-    classroom = get_object_or_404(Classroom,pk=pk)
-    assignments = []
-    for topic in classroom.topic_set.all():
-        assignments.extend(list(topic.assignment_set.all()))
-    context = {'assignments':assignments}
-    return render(request, 'classroom/classwork.html', context)
 
 @login_required
 def toreview(request):
@@ -230,10 +226,19 @@ def toreview(request):
     assignments = []
     for topic in topics:
         assignments.extend(topic.assignment_set.all())
- 
-    context = {'assignments':assignments}
+    context = {'assignments': reversed(assignments)}
     return render(request, 'classroom/toreview.html', context)
 
+
+@login_required
+def classwork(request, pk):
+    classroom = get_object_or_404(Classroom,pk=pk)
+    assignments = []
+    for topic in classroom.topic_set.all():
+        assignments.extend(list(topic.assignment_set.all()))
+    
+    context = {'assignments':assignments}
+    return render(request, 'classroom/classwork.html', context)
 
 def student_work(request, pk):
     assignment = get_object_or_404(Assignment, pk=pk)
