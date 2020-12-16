@@ -5,7 +5,7 @@
 This is an attempt to clone the best features of google classroom and educative.io using django.
 
 ## Screenshots 
-<img src="screenshots/home.png" width="400"/><img src="screenshots/features.PNG" width="400"/> 
+<img src="screenshots/home.PNG" width="400"/><img src="screenshots/features.PNG" width="400"/> 
 <img src="screenshots/classrooms.PNG" width="400"/> <img src="screenshots/classroom.PNG" width="400"/> 
 <img src="screenshots/newsletterandcontacts.PNG" width="400"/> <img src="screenshots/userlogin.PNG" width="400"/> 
 <img src="screenshots/userregister.PNG" width="400"/> <img src="screenshots/view_assignment.PNG" width="400"/>
