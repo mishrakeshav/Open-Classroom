@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,6 +117,62 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "OpenClassroom Admin",
+
+    # Title on the brand, and login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "OpenClassroom",
+
+    # square logo to use for your site, must be present in static files, used for favicon and brand on top left
+    # Welcome text on the login screen
+    "welcome_sign": "Login as Admin",
+
+    # Copyright on the footer
+    "copyright": "OpenClassroom 2021",
+
+    # The model admin to search from the search bar, search bar omitted if excluded
+    "search_model": "auth.User",
+
+    # Field name on user model that contains avatar image
+    "user_avatar": None,
+
+     "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "books"},
+    ],
+        # Additional links to include in the user menu on the top right ("app" url type is not allowed)
+    "usermenu_links": [
+        {"model": "auth.user"}
+    ],
+
+        # Whether to display the side menu
+    "show_sidebar": False,
+
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
+
+    "order_with_respect_to": ["auth", "patients", "queues", "departments" , "hospitals"],
+
+        # Use modals instead of popups
+    "related_modal_active": True,
+    # Render out the change view as a single form, or in tabs, current options are
+    # - single
+    # - horizontal_tabs (default)
+    # - vertical_tabs
+    # - collapsible
+    # - carousel
+
+    "changeform_format": "horizontal_tabs",
+
+    
+}
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
