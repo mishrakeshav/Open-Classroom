@@ -12,7 +12,7 @@ from comments.forms import CommentCreateForm, PrivateCommentForm
 @login_required
 def home(requests):
     teaching_classes = set([classroom.classroom for classroom in requests.user.classroomteachers_set.all()])
-    classrooms = set(requests.user.classroom_set.all()).union(teaching_classes)
+    classrooms = set([classroom.classroom for classroom in requests.user.classroomstudent_set.all()]).union(teaching_classes)
     classroom_form = ClassroomCreationForm()
     join_classroom_form = JoinClassroomForm()
     context = {
